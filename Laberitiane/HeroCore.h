@@ -49,7 +49,7 @@ public:
 
 	~HeroCore() {}
 
-	virtual void move(float dx, float dy, float time)
+	void move(float dx, float dy, float time)
 	{
 		dx_ = dx;
 		dy_ = dy;
@@ -57,8 +57,11 @@ public:
 		x_ += dx_ * time;
 		y_ += dy_ * time;
 		spr_.setPosition(x_, y_);
-		col_.setPosition(x_, y_ + h_ - 2);;
+		col_.setPosition(x_, y_ + h_ - 2);
 	}
+
+	virtual void move(int dir, float time) = 0;
+
 
 	virtual void updateRect(int delY, float time, int reverse = 0)
 	{

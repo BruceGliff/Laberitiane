@@ -28,7 +28,7 @@ public:
 		heroNumber_(heroNumber),
 		speed_(speed)
 	{
-		view_.reset(sf::FloatRect(0, 0, 100, 100)); //зависимость размера окна от размера камеры
+		view_.reset(sf::FloatRect(0, 0, 100, 100));
 		view_.setCenter(x + w /2, y + h / 2);
 		updateRect(POS_TEX_N * heroNumber, 0);
 	}
@@ -59,7 +59,7 @@ public:
 		setViewCoor(getX(), getY());
 	}
 
-	void setViewCoor(float x, float y) { view_.setCenter(x + getW() / 2,  y + getH() / 2); } // Узнать зависисмость координат, от размера
+	void setViewCoor(float x, float y) { view_.setCenter(x + getW() / 2,  y + getH() / 2); }
 
 	void setView(sf::RenderWindow * window){ window->setView(view_); }
 

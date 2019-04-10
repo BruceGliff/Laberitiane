@@ -4,6 +4,13 @@
 
 using namespace sf;
 
+#define MOVEMENT(btn1, btn2, dir, h_ind)\
+if ((Keyboard::isKeyPressed(Keyboard::##btn1) || Keyboard::isKeyPressed(Keyboard::##btn2)) && !event_F)\
+{\
+	event_F = true;\
+	heros[h_ind]->move(dir, time);\
+}
+
 int main()
 {
 	setlocale(LC_ALL, "Russian");
@@ -38,34 +45,20 @@ int main()
 				window.close();
 		}
 		
-		bool event_F = false;
-
-		//EAST
-		if ((Keyboard::isKeyPressed(Keyboard::Right) || Keyboard::isKeyPressed(Keyboard::D)) && !event_F)
 		{
-			event_F = true;
-			(dynamic_cast<Player *>(heros[0]))->move(EAST, time);
+			bool event_F = false;
+			MOVEMENT(Up, Up, NORTH, 0)
+			MOVEMENT(Right, Right, EAST, 0)
+			MOVEMENT(Down, Down, SOUTH, 0)
+			MOVEMENT(Left, Left, WEST, 0)
 		}
-
-		//WEST
-		if ((Keyboard::isKeyPressed(Keyboard::Left) || Keyboard::isKeyPressed(Keyboard::A)) && !event_F)
-		{ 
-			event_F = true;
-			(dynamic_cast<Player *>(heros[0]))->move(WEST, time);
-		}
-
-		//NORTH
-		if ((Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::W)) && !event_F)
-		{ 
-			event_F = true;
-			(dynamic_cast<Player *>(heros[0]))->move(NORTH, time);
-		}
-
-		//SOUTH
-		if ((Keyboard::isKeyPressed(Keyboard::Down) || Keyboard::isKeyPressed(Keyboard::S)) && !event_F)
+		
 		{
-			event_F = true;
-			(dynamic_cast<Player *>(heros[0]))->move(SOUTH, time);
+			bool event_F = false;
+			MOVEMENT(W, W, NORTH, 1)
+			MOVEMENT(D, D, EAST, 1)
+			MOVEMENT(S, S, SOUTH, 1)
+			MOVEMENT(A, A, WEST, 1)
 		}
 
 		(dynamic_cast<Player *>(heros[0]))->setView(&window);
