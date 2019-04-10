@@ -135,6 +135,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="HeroCore.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>

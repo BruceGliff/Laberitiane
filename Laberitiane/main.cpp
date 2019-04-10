@@ -8,14 +8,14 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 
-	sf::RenderWindow window(sf::VideoMode(200, 200), "Laberitianin");
+	sf::RenderWindow window(sf::VideoMode(600, 600), "Laberitianin");
 
 	RectangleShape shape(Vector2f(200, 200));
 	shape.setFillColor(Color(255, 255, 255));
 
-	shape.setPosition(0, 0);
+	shape.setPosition(225, 225);
 
-	Player p(100, 100, 7);
+	Player p(300, 300, 3);
 
 	Clock clock;
 
@@ -62,6 +62,7 @@ int main()
 			p.move(SOUTH, time);
 		}
 
+		p.setView(&window);
 		window.clear();
 
 		window.draw(shape);

@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-class heroCore
+class HeroCore
 {
 	float x_;
 	float y_;
@@ -24,7 +24,7 @@ class heroCore
 public:
 	int delY_ = 0;
 
-	heroCore(float x  = 0, float y = 0, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png"):
+	HeroCore(float x  = 0, float y = 0, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png"):
 		x_(x),
 		y_(y),
 		dx_(dx),
@@ -42,7 +42,7 @@ public:
 		spr_.setPosition(x_, y_);
 	}
 
-	~heroCore() {}
+	~HeroCore() {}
 
 	virtual void move(float dx, float dy, float time)
 	{
@@ -70,4 +70,9 @@ public:
 	{
 		window->draw(spr_);
 	}
+
+	float getX() { return x_; }
+	float getY() { return y_; }
+	int getH() { return h_; }
+	int getW() { return w_; }
 };

@@ -14,46 +14,53 @@ enum direction
 	WEST
 };
 
-class Player : public heroCore
+class Player : public HeroCore
 {
 	int heroNumber_;
 	int dir_;
 	float speed_;
 
+	sf::View view_;
+
 public:
 	Player(float x = 0, float y = 0, int heroNumber = 0, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png", float speed = 0.2) :
-		heroCore(x, y, dx, dy, animSpeed, frames, w, h, fileName),
+		HeroCore(x, y, dx, dy, animSpeed, frames, w, h, fileName),
 		heroNumber_(heroNumber),
 		speed_(speed)
 	{
+		view_.reset(sf::FloatRect(225, 225, 300, 300)); //зависимость размера окна от размера камеры
 		updateRect(POS_TEX_N * heroNumber, 0);
 	}
 
 	void move(int dir, float time)
 	{
-		//std::cout << speed_;
 		dir %= 4;
 		switch (dir)
 		{
 		case NORTH:
-			heroCore::move(0, -speed_, time);
+			HeroCore::move(0, -speed_, time);
 			updateRect(POS_TEX_N * heroNumber_ + POS_TEX_N - 1, time);
 			break;
 		case EAST:
-			heroCore::move(speed_, 0, time);
+			HeroCore::move(speed_, 0, time);
 			updateRect(POS_TEX_N * heroNumber_ + POS_TEX_N - 2, time);
 			break;
 		case SOUTH:
-			heroCore::move(0, speed_, time);
+			HeroCore::move(0, speed_, time);
 			updateRect(POS_TEX_N * heroNumber_, time);
 			break;
 		case WEST:
-			heroCore::move(-speed_, 0, time);
+			HeroCore::move(-speed_, 0, time);
 			updateRect(POS_TEX_N * heroNumber_ + POS_TEX_N - 2, time, REVERS_TEX);
 			break;
 		}
 
+		setViewCoor(getX(), getY());
 	}
+
+	void setViewCoor(float x, float y) { view_.setCenter(x + getW() * 1.6,  y + getH() * 1.6); } // Узнать зависисмость координат, от размера
+
+	void setView(sf::RenderWindow * window){ window->setView(view_); }
 
 };
 
