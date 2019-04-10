@@ -8,14 +8,20 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 
-	sf::RenderWindow window(sf::VideoMode(600, 600), "Laberitianin");
+	sf::RenderWindow window(sf::VideoMode(200, 200), "Laberitianin");
 
-	RectangleShape shape(Vector2f(200, 200));
+	RectangleShape shape(Vector2f(60, 60));
 	shape.setFillColor(Color(255, 255, 255));
 
-	shape.setPosition(225, 225);
+	shape.setPosition(0, 0);
 
-	Player p(300, 300, 3);
+	HeroCore *heros[8];
+
+	for (int i = 0; i < 8; i++)
+	{
+		heros[i] = new Player(i * 20, 0, i);
+	}
+
 
 	Clock clock;
 
@@ -38,36 +44,38 @@ int main()
 		if ((Keyboard::isKeyPressed(Keyboard::Right) || Keyboard::isKeyPressed(Keyboard::D)) && !event_F)
 		{
 			event_F = true;
-			p.move(EAST, time);
+			(dynamic_cast<Player *>(heros[0]))->move(EAST, time);
 		}
 
 		//WEST
 		if ((Keyboard::isKeyPressed(Keyboard::Left) || Keyboard::isKeyPressed(Keyboard::A)) && !event_F)
 		{ 
 			event_F = true;
-			p.move(WEST, time);
+			(dynamic_cast<Player *>(heros[0]))->move(WEST, time);
 		}
 
 		//NORTH
 		if ((Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::W)) && !event_F)
 		{ 
 			event_F = true;
-			p.move(NORTH, time);
+			(dynamic_cast<Player *>(heros[0]))->move(NORTH, time);
 		}
 
 		//SOUTH
 		if ((Keyboard::isKeyPressed(Keyboard::Down) || Keyboard::isKeyPressed(Keyboard::S)) && !event_F)
 		{
 			event_F = true;
-			p.move(SOUTH, time);
+			(dynamic_cast<Player *>(heros[0]))->move(SOUTH, time);
 		}
 
-		p.setView(&window);
+		(dynamic_cast<Player *>(heros[0]))->setView(&window);
 		window.clear();
 
 		window.draw(shape);
-		p.draw(&window);
 
+		for (int i = 0; i < 8; i++)
+			heros[i]->draw(&window);
+		
 		window.display();
 	}
 

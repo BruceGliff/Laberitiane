@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+
 #include <iostream>
 
 class HeroCore
@@ -15,6 +16,7 @@ class HeroCore
 
 	sf::Texture tex_;
 	sf::Sprite spr_;
+	sf::RectangleShape col_;
 
 	int w_;
 	int h_;
@@ -36,9 +38,12 @@ public:
 		h_(h),
 		fileName_(fileName)
 	{
+		col_ = sf::RectangleShape(sf::Vector2f(w_, 3));
+		col_.setPosition(x_, y_ + h_ - 2);
+		col_.setFillColor(sf::Color(255, 0, 0));
 		tex_.loadFromFile(fileName);
 		spr_.setTexture(tex_);
-		spr_.scale(3, 3);
+		//spr_.scale(3, 3);
 		spr_.setPosition(x_, y_);
 	}
 
@@ -52,6 +57,7 @@ public:
 		x_ += dx_ * time;
 		y_ += dy_ * time;
 		spr_.setPosition(x_, y_);
+		col_.setPosition(x_, y_ + h_ - 2);;
 	}
 
 	virtual void updateRect(int delY, float time, int reverse = 0)
@@ -68,6 +74,7 @@ public:
 
 	virtual void draw(sf::RenderWindow * window)
 	{
+		window->draw(col_);
 		window->draw(spr_);
 	}
 
@@ -75,4 +82,11 @@ public:
 	float getY() { return y_; }
 	int getH() { return h_; }
 	int getW() { return w_; }
+
+
+	void interSection(HeroCore & second)
+	{
+		//if ()
+	}
+
 };
