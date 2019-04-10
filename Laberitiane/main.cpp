@@ -15,7 +15,7 @@ int main()
 
 	shape.setPosition(0, 0);
 
-	Player p(50, 50, 7);
+	Player p(100, 100, 7);
 
 	Clock clock;
 
@@ -24,43 +24,48 @@ int main()
 		float time = clock.getElapsedTime().asMicroseconds();
 		clock.restart();
 		time /= 1800;
-		std::cout << time << "\n";
+		
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
+		
+		bool event_F = false;
 
 		//EAST
-		if (Keyboard::isKeyPressed(Keyboard::Right) || Keyboard::isKeyPressed(Keyboard::D))
+		if ((Keyboard::isKeyPressed(Keyboard::Right) || Keyboard::isKeyPressed(Keyboard::D)) && !event_F)
 		{
-			p.updateRect(EAST, 0.1, time);
+			event_F = true;
+			p.move(EAST, time);
 		}
 
 		//WEST
-		if (Keyboard::isKeyPressed(Keyboard::Left) || Keyboard::isKeyPressed(Keyboard::A))
+		if ((Keyboard::isKeyPressed(Keyboard::Left) || Keyboard::isKeyPressed(Keyboard::A)) && !event_F)
 		{ 
-			p.updateRect(WEST, 0.1, time);
+			event_F = true;
+			p.move(WEST, time);
 		}
 
 		//NORTH
-		if (Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::W)) 
+		if ((Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::W)) && !event_F)
 		{ 
-			p.updateRect(NORTH, 0.1, time);
+			event_F = true;
+			p.move(NORTH, time);
 		}
 
 		//SOUTH
-		if (Keyboard::isKeyPressed(Keyboard::Down) || Keyboard::isKeyPressed(Keyboard::S))
+		if ((Keyboard::isKeyPressed(Keyboard::Down) || Keyboard::isKeyPressed(Keyboard::S)) && !event_F)
 		{
-			p.updateRect(SOUTH, 0.1, time);
+			event_F = true;
+			p.move(SOUTH, time);
 		}
-		p.upload(time);
 
 		window.clear();
 
 		window.draw(shape);
-		window.draw(p.spr_);
+		p.draw(&window);
 
 		window.display();
 	}

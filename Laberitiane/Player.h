@@ -1,6 +1,10 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "HeroCore.h"
+
+constexpr auto REVERS_TEX = 1;
+constexpr auto POS_TEX_N = 3;
 
 enum direction
 {
@@ -10,101 +14,46 @@ enum direction
 	WEST
 };
 
-class Player
+class Player : public heroCore
 {
-public:
-	float x_;
-	float y_;
-
-	float dx_ = 0 ;
-	float dy_ = 0;
-
-	int h_;
-	int w_;
-
-	float speed_ = 0;
-	float animSpeed_ = 0.02;
-	int dir_;
-	float frame_ =  0;
 	int heroNumber_;
+	int dir_;
+	float speed_;
 
-	sf::Image img_;
-	sf::Texture tex_;
-	sf::Sprite spr_;
-
-	const char * fileName_ = "ref/images/skins.png";
-
-	Player(float x, float y, int heroNumber = 0, int h = 16, int w = 16)
+public:
+	Player(float x = 0, float y = 0, int heroNumber = 0, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png", float speed = 0.2) :
+		heroCore(x, y, dx, dy, animSpeed, frames, w, h, fileName),
+		heroNumber_(heroNumber),
+		speed_(speed)
 	{
-		img_.loadFromFile(fileName_);
-		tex_.loadFromImage(img_);
-		spr_.setTexture(tex_);
-		spr_.scale(sf::Vector2f(5, 5));
-
-		heroNumber_ = heroNumber;
-		h_ = h;
-		w_ = w;
-		x_ = x;
-		y_ = y;
-
-		spr_.setTextureRect(sf::IntRect(0, heroNumber_ * 3 * h_, w, h));
+		updateRect(POS_TEX_N * heroNumber, 0);
 	}
 
-	void updateRect(int dir, float speed, float time)
+	void move(int dir, float time)
 	{
-		dir_ = dir;
-		speed_ = speed;
-
-		frame_ += animSpeed_ * time;
-		if (frame_ >= 3) frame_ -= 3;
-
-		switch (dir_)
+		//std::cout << speed_;
+		dir %= 4;
+		switch (dir)
 		{
 		case NORTH:
-			spr_.setTextureRect(sf::IntRect(16 * int(frame_), heroNumber_ * 3 * h_ + 2 * h_, h_, h_));
+			heroCore::move(0, -speed_, time);
+			updateRect(POS_TEX_N * heroNumber_ + POS_TEX_N - 1, time);
 			break;
 		case EAST:
-			spr_.setTextureRect(sf::IntRect(16 * int(frame_), heroNumber_ * 3 * h_ + 1 * h_, h_, h_));
+			heroCore::move(speed_, 0, time);
+			updateRect(POS_TEX_N * heroNumber_ + POS_TEX_N - 2, time);
 			break;
 		case SOUTH:
-			spr_.setTextureRect(sf::IntRect(16 * int(frame_), heroNumber_ * 3 * h_, h_, h_));
+			heroCore::move(0, speed_, time);
+			updateRect(POS_TEX_N * heroNumber_, time);
 			break;
 		case WEST:
-			spr_.setTextureRect(sf::IntRect(16 * (int(frame_) + 1), heroNumber_ * 3 * h_ + 1 * h_, -h_, h_));
-			break;
-		}
-		
-	}
-
-	~Player() {};
-
-	void upload(float time)
-	{
-		switch (dir_)
-		{
-		case NORTH:
-			dx_ = 0;
-			dy_ = -speed_;
-			break;
-		case EAST:
-			dx_ = speed_;
-			dy_ = 0;
-			break;
-		case SOUTH:
-			dx_ = 0;
-			dy_ = speed_;
-			break;
-		case WEST:
-			dx_ = -speed_;
-			dy_ = 0;
+			heroCore::move(-speed_, 0, time);
+			updateRect(POS_TEX_N * heroNumber_ + POS_TEX_N - 2, time, REVERS_TEX);
 			break;
 		}
 
-		x_ += dx_ * time;
-		y_ += dy_ * time;
+	}
 
-		speed_ = 0;
-		spr_.setPosition(x_, y_);
-	}	
 };
 
