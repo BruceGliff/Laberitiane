@@ -29,13 +29,13 @@
     <ClInclude Include="Player.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="HeroCore.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Sort.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Qsort.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectCore.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

@@ -58,14 +58,14 @@ public:
 };
 
 template<>
-class Sort<HeroCore>
+class Sort<ObjectCore>
 {
-	HeroCore * key_;
+	ObjectCore * key_;
 	Sort * left_;
 	Sort * right_;
 
 public:
-	Sort * insert(Sort * p, HeroCore * key)
+	Sort * insert(Sort * p, ObjectCore * key)
 	{
 		if (p == nullptr)
 		{

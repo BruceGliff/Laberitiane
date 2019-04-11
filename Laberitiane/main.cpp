@@ -15,7 +15,7 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 
-	sf::RenderWindow window(sf::VideoMode(900, 900), "Laberitianin");
+	sf::RenderWindow window(sf::VideoMode(1600, 900), "Laberitianin");
 
 	RectangleShape shape(Vector2f(800, 800));
 	shape.setFillColor(Color(255, 255, 255));
@@ -23,8 +23,8 @@ int main()
 
 	shape.setPosition(0, 0);
 
-	HeroCore *heroes[8];
-	HeroCore *h_draw[8];
+	ObjectCore *heroes[8];
+	ObjectCore *h_draw[8];
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -67,7 +67,7 @@ int main()
 
 		window.clear();
 
-		QSort<HeroCore> * q = nullptr;
+		QSort<ObjectCore> * q = nullptr;
 		for (int i = 0; i < 8; i++)
 		{
 			q = q->insert(q, h_draw[i]);

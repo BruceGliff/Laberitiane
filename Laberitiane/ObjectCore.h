@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-class HeroCore
+class ObjectCore
 {
 	float x_;
 	float y_;
@@ -27,7 +27,7 @@ class HeroCore
 public:
 	int delY_ = 0;
 
-	HeroCore(float x = 0, float y = 0, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, float scale = 1, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png") :
+	ObjectCore(float x = 0, float y = 0, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, float scale = 1, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png") :
 		x_(x),
 		y_(y),
 		dx_(dx),
@@ -50,7 +50,7 @@ public:
 		spr_.setPosition(x_, y_);
 	}
 
-	~HeroCore() {}
+	~ObjectCore() {}
 
 	void move(float dx, float dy, float time)
 	{
@@ -90,7 +90,7 @@ public:
 	int getW() { return w_; }
 
 
-	void interSection(HeroCore * second)
+	void interSection(ObjectCore * second)
 	{
 		if (col_.getGlobalBounds().intersects(second->col_.getGlobalBounds()))
 		{

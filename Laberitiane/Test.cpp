@@ -4,9 +4,9 @@
 int main()
 {
 	//*
-	QSort<HeroCore> * t = nullptr;
+	QSort<ObjectCore> * t = nullptr;
 
-	HeroCore *heroes[1000];
+	ObjectCore *heroes[1000];
 
 	for (int i = 1000; i >= 0; i--)
 	{

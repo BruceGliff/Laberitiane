@@ -142,7 +142,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HeroCore.h" />
+    <ClInclude Include="ObjectCore.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Qsort.h" />
     <ClInclude Include="Sort.h" />

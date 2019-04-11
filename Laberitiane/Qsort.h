@@ -159,9 +159,9 @@ public:
 /*!!!!!!!!!!!!!!!!!!! HEROCODE !!!!!!!!!!!!!!!!!!!*/
 
 template <>
-class QSort<HeroCore>
+class QSort<ObjectCore>
 {
-	HeroCore * key_;
+	ObjectCore * key_;
 	unsigned int height_;
 	QSort * left_;
 	QSort * right_;
@@ -174,7 +174,7 @@ public:
 		right_(0)
 	{}
 
-	QSort(HeroCore * key) :
+	QSort(ObjectCore * key) :
 		key_(key),
 		height_(1),
 		left_(0),
@@ -240,7 +240,7 @@ public:
 	}
 
 	/* ADDED NODES */
-	QSort * insert(QSort * p, HeroCore * k)
+	QSort * insert(QSort * p, ObjectCore * k)
 	{
 		if (!p) return new QSort(k);
 		if (k->getY() < p->key_->getY())
@@ -284,7 +284,7 @@ public:
 		return balance(p);
 	}
 
-	QSort * remove(QSort * p, HeroCore * k)
+	QSort * remove(QSort * p, ObjectCore * k)
 	{
 		if (!p) return 0;
 		if (k->getY() < p->key_->getY())
