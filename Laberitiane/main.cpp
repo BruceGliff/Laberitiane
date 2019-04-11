@@ -4,29 +4,32 @@
 
 using namespace sf;
 
-#define MOVEMENT(btn1, btn2, dir, h_ind)\
-if ((Keyboard::isKeyPressed(Keyboard::##btn1) || Keyboard::isKeyPressed(Keyboard::##btn2)) && !event_F)\
+#define MOVEMENT(btn, h_ind)\
+if (Keyboard::isKeyPressed(Keyboard::##btn) && !event_F)\
 {\
 	event_F = true;\
-	heros[h_ind]->move(dir, time);\
+	heroes[h_ind]->move(btn, time);\
 }
 
 int main()
 {
 	setlocale(LC_ALL, "Russian");
 
-	sf::RenderWindow window(sf::VideoMode(200, 200), "Laberitianin");
+	sf::RenderWindow window(sf::VideoMode(900, 900), "Laberitianin");
 
-	RectangleShape shape(Vector2f(60, 60));
+	RectangleShape shape(Vector2f(800, 800));
 	shape.setFillColor(Color(255, 255, 255));
+	shape.scale(3, 3);
 
 	shape.setPosition(0, 0);
 
-	HeroCore *heros[8];
+	HeroCore *heroes[8];
+	HeroCore *h_draw[8];
 
 	for (int i = 0; i < 8; i++)
 	{
-		heros[i] = new Player(i * 20, 0, i);
+		heroes[i] = new Player(i * 50.0f, 0, i);
+		h_draw[i] = heroes[i];
 	}
 
 
@@ -34,7 +37,7 @@ int main()
 
 	while (window.isOpen())
 	{
-		float time = clock.getElapsedTime().asMicroseconds();
+		float time = float(clock.getElapsedTime().asMicroseconds());
 		clock.restart();
 		time /= 1800;
 		
@@ -47,29 +50,35 @@ int main()
 		
 		{
 			bool event_F = false;
-			MOVEMENT(Up, Up, NORTH, 0)
-			MOVEMENT(Right, Right, EAST, 0)
-			MOVEMENT(Down, Down, SOUTH, 0)
-			MOVEMENT(Left, Left, WEST, 0)
+			MOVEMENT(Up, 0);
+			MOVEMENT(Right, 0);
+			MOVEMENT(Down, 0);
+			MOVEMENT(Left, 0);
 		}
 		
+		
+		for (int i = 0; i < 7; i++)
 		{
-			bool event_F = false;
-			MOVEMENT(W, W, NORTH, 1)
-			MOVEMENT(D, D, EAST, 1)
-			MOVEMENT(S, S, SOUTH, 1)
-			MOVEMENT(A, A, WEST, 1)
+			for (int j = i + 1; j < 8; j++)
+				heroes[i]->interSection(heroes[j]);
 		}
 
-		(dynamic_cast<Player *>(heros[0]))->setView(&window);
+		heroes[0]->setView(&window);
+
 		window.clear();
+
+		QSort<HeroCore> * q = nullptr;
+		for (int i = 0; i < 8; i++)
+		{
+			q = q->insert(q, h_draw[i]);
+		}
 
 		window.draw(shape);
 
-		for (int i = 0; i < 8; i++)
-			heros[i]->draw(&window);
+		q->draw(&window);
 		
 		window.display();
+		q->free();
 	}
 
 	return 0;

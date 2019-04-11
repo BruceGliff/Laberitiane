@@ -161,13 +161,20 @@ public:
 template <>
 class QSort<HeroCore>
 {
-	HeroCore ** key_;
+	HeroCore * key_;
 	unsigned int height_;
 	QSort * left_;
 	QSort * right_;
 
 public:
-	QSort(HeroCore ** key) :
+	QSort() :
+		key_(nullptr),
+		height_(0),
+		left_(0),
+		right_(0)
+	{}
+
+	QSort(HeroCore * key) :
 		key_(key),
 		height_(1),
 		left_(0),
@@ -233,10 +240,10 @@ public:
 	}
 
 	/* ADDED NODES */
-	QSort * insert(QSort * p, HeroCore ** k)
+	QSort * insert(QSort * p, HeroCore * k)
 	{
 		if (!p) return new QSort(k);
-		if ((*k)->getY() < (*p->key_)->getY())
+		if (k->getY() < p->key_->getY())
 			p->left_ = insert(p->left_, k);
 		else
 			p->right_ = insert(p->right_, k);
@@ -248,7 +255,7 @@ public:
 	{
 		if (this->left_)
 			this->left_->print();
-		std::cout << (*key_)->getY() << '\n';
+		std::cout << key_->getY() << '\n';
 		if (this->right_)
 			this->right_->print();
 	}
@@ -258,7 +265,7 @@ public:
 	{
 		if (left_)
 			left_->draw(window);
-		(*key_)->draw(window);
+		key_->draw(window);
 		if (right_)
 			right_->draw(window);
 	}
@@ -277,10 +284,10 @@ public:
 		return balance(p);
 	}
 
-	QSort * remove(QSort * p, HeroCore ** k)
+	QSort * remove(QSort * p, HeroCore * k)
 	{
 		if (!p) return 0;
-		if ((*k)->getY() < (*p->key_)->getY())
+		if (k->getY() < p->key_->getY())
 			p->left_ = remove(p->left_, k);
 		else if (k > p->key_)
 			p->right_ = remove(p->right_, k);
