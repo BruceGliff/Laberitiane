@@ -142,16 +142,20 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Map.h" />
     <ClInclude Include="ObjectCore.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Qsort.h" />
     <ClInclude Include="Sort.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Player.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="ref\images\flour.png" />
     <Image Include="ref\images\skins.png" />
+    <Image Include="ref\images\wall.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

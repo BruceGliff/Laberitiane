@@ -38,12 +38,24 @@
     <ClInclude Include="ObjectCore.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Player.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ref\images\skins.png">
+      <Filter>Файлы ресурсов\images</Filter>
+    </Image>
+    <Image Include="ref\images\flour.png">
+      <Filter>Файлы ресурсов\images</Filter>
+    </Image>
+    <Image Include="ref\images\wall.png">
       <Filter>Файлы ресурсов\images</Filter>
     </Image>
   </ItemGroup>

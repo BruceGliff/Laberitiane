@@ -10,14 +10,6 @@ class QSort
 	QSort * left_;
 	QSort * right_;
 
-public:
-	QSort(T key) :
-		key_(key),
-		height_(1),
-		left_(0),
-		right_(0)
-	{}
-
 	/* HEIGHT WORK */
 	unsigned int height(QSort * p)
 	{
@@ -76,6 +68,44 @@ public:
 		return p;
 	}
 
+	/* FIND MINIMAL NODES */
+	QSort * findmin(QSort * p)
+	{
+		return p->left_ ? findmin(p->left_) : p;
+	}
+
+public:
+	QSort(T key) :
+		key_(key),
+		height_(1),
+		left_(0),
+		right_(0)
+	{}
+
+	/* DESTROY */
+	void free()
+	{
+		if (left_ != nullptr)
+		{
+			left_->free();
+		}
+		if (right_ != nullptr)
+		{
+			right_->free();
+		}
+		delete this;
+	}
+
+	/*  PRINT NODES  */
+	void print()
+	{
+		if (this->left_)
+			this->left_->print();
+		std::cout << key_ << '\n';
+		if (this->right_)
+			this->right_->print();
+	}
+
 	/* ADDED NODES */
 	QSort * insert(QSort * p, T k)
 	{
@@ -87,22 +117,7 @@ public:
 		return balance(p);
 	}
 
-	/*  PRINT NODES  */
-	void print()
-	{
-		if (this->left_)
-			this->left_->print();
-		std::cout << key_  << '\n';
-		if (this->right_)
-			this->right_->print();
-	}
-
 	/* DELETED NODES */
-	QSort * findmin(QSort * p)
-	{
-		return p->left_ ? findmin(p->left_) : p;
-	}
-
 	QSort * removemin(QSort * p)
 	{
 		if (p->left_ == 0)
@@ -132,19 +147,6 @@ public:
 		return balance(p);
 	}
 
-	void free()
-	{
-		if (left_ != nullptr)
-		{
-			left_->free();
-		}
-		if (right_ != nullptr)
-		{
-			right_->free();
-		}
-		delete this;
-	}
-
 };
 
 
@@ -165,21 +167,6 @@ class QSort<ObjectCore>
 	unsigned int height_;
 	QSort * left_;
 	QSort * right_;
-
-public:
-	QSort() :
-		key_(nullptr),
-		height_(0),
-		left_(0),
-		right_(0)
-	{}
-
-	QSort(ObjectCore * key) :
-		key_(key),
-		height_(1),
-		left_(0),
-		right_(0)
-	{}
 
 	/* HEIGHT WORK */
 	unsigned int height(QSort * p)
@@ -237,37 +224,6 @@ public:
 			return rotateright(p);
 		}
 		return p;
-	}
-
-	/* ADDED NODES */
-	QSort * insert(QSort * p, ObjectCore * k)
-	{
-		if (!p) return new QSort(k);
-		if (k->getY() < p->key_->getY())
-			p->left_ = insert(p->left_, k);
-		else
-			p->right_ = insert(p->right_, k);
-		return balance(p);
-	}
-
-	/*  PRINT NODES  */
-	void print()
-	{
-		if (this->left_)
-			this->left_->print();
-		std::cout << key_->getY() << '\n';
-		if (this->right_)
-			this->right_->print();
-	}
-
-	/* DRAW */
-	void draw(sf::RenderWindow * window)
-	{
-		if (left_)
-			left_->draw(window);
-		key_->draw(window);
-		if (right_)
-			right_->draw(window);
 	}
 
 	/* DELETED NODES */
@@ -305,6 +261,23 @@ public:
 		return balance(p);
 	}
 
+public:
+	QSort() :
+		key_(nullptr),
+		height_(0),
+		left_(0),
+		right_(0)
+	{}
+
+	QSort(ObjectCore * key) :
+		key_(key),
+		height_(1),
+		left_(0),
+		right_(0)
+	{}
+
+
+	/* DESTROY */
 	void free()
 	{
 		if (left_ != nullptr)
@@ -316,6 +289,37 @@ public:
 			right_->free();
 		}
 		delete this;
+	}
+
+	/*  PRINT NODES  */
+	void print()
+	{
+		if (this->left_)
+			this->left_->print();
+		std::cout << key_->getY() << ' ' << key_->getH() << '\n';
+		if (this->right_)
+			this->right_->print();
+	}
+
+	/* DRAW */
+	void draw(sf::RenderWindow * window)
+	{
+		if (left_)
+			left_->draw(window);
+		key_->draw(window);
+		if (right_)
+			right_->draw(window);
+	}
+
+	/* ADDED NODES */
+	QSort * insert(QSort * p, ObjectCore * k)
+	{
+		if (!p) return new QSort(k);
+		if ((k->getY() + k->getHS()) < (p->key_->getY() + p->key_->getHS()))
+			p->left_ = insert(p->left_, k);
+		else
+			p->right_ = insert(p->right_, k);
+		return balance(p);
 	}
 
 };

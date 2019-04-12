@@ -5,6 +5,8 @@
 
 class ObjectCore
 {
+	bool playerF_;
+
 	float x_;
 	float y_;
 	float dx_;
@@ -27,7 +29,8 @@ class ObjectCore
 public:
 	int delY_ = 0;
 
-	ObjectCore(float x = 0, float y = 0, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, float scale = 1, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png") :
+	ObjectCore(bool playerF = 0, float x = 0, float y = 0, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, float scale = 1, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png") :
+		playerF_(playerF),
 		x_(x),
 		y_(y),
 		dx_(dx),
@@ -42,7 +45,7 @@ public:
 	{
 		col_ = sf::RectangleShape(sf::Vector2f(w_, 3.0f));
 		col_.scale(scale_, scale_);
-		col_.setPosition(x_, (y_ + h_ - 2) * scale_);
+		col_.setPosition(x_, y_ + (h_ - 2) * scale_);
 		col_.setFillColor(sf::Color(255, 0, 0));
 		tex_.loadFromFile(fileName);
 		spr_.setTexture(tex_);
@@ -60,13 +63,14 @@ public:
 		x_ += dx_ * time;
 		y_ += dy_ * time;
 		spr_.setPosition(x_, y_);
-		col_.setPosition(x_, y_ + h_ - 2);
+		col_.setPosition(x_, y_ + (h_ - 2) * scale_);
 	}
 
 	virtual void move(int dir, float time) = 0;
 	virtual void setView(sf::RenderWindow * window) = 0;
+	virtual sf::View * getView() = 0;
 
-	virtual void updateRect(int delY, float time, int reverse = 0)
+	virtual void updateRect(int delY = 0, float time = 0.f, int reverse = 0)
 	{
 		currFrame_ += animSpeed_ * time;
 		if (currFrame_ >= frames_) currFrame_ -= frames_;
@@ -76,6 +80,8 @@ public:
 		else
 			spr_.setTextureRect(sf::IntRect(w_ * int(currFrame_ + 1), h_ * delY, -w_, h_));
 	}
+
+	bool alive() { return playerF_; }
 
 
 	virtual void draw(sf::RenderWindow * window)
@@ -89,13 +95,21 @@ public:
 	int getH() { return h_; }
 	int getW() { return w_; }
 
+	int getHS() { return h_ * scale_; }
+	int getWS() { return w_ * scale_; }
 
-	void interSection(ObjectCore * second)
+	sf::Sprite & getSpr() { return spr_; }
+
+	
+	virtual bool interSection(ObjectCore * second)
 	{
 		if (col_.getGlobalBounds().intersects(second->col_.getGlobalBounds()))
 		{
 			std::cout << "INTERSECT" << '\n';
+			return true;
 		}
+
+		return false;
 	}
 
 };

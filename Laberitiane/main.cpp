@@ -1,5 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "Map.h"
+#include "Wall.h"
+#include <vector>
 #include <iostream>
 
 using namespace sf;
@@ -8,28 +11,38 @@ using namespace sf;
 if (Keyboard::isKeyPressed(Keyboard::##btn) && !event_F)\
 {\
 	event_F = true;\
-	heroes[h_ind]->move(btn, time);\
+	objects[h_ind]->move(btn, time);\
 }
 
 int main()
 {
 	setlocale(LC_ALL, "Russian");
 
-	sf::RenderWindow window(sf::VideoMode(1600, 900), "Laberitianin");
+	int winX = 1600;
+	int winY = 900;
 
-	RectangleShape shape(Vector2f(800, 800));
-	shape.setFillColor(Color(255, 255, 255));
-	shape.scale(3, 3);
+	sf::RenderWindow window(sf::VideoMode(winX, winY), "Laberitianin");
 
-	shape.setPosition(0, 0);
+	Map map(5, 1);
 
-	ObjectCore *heroes[8];
-	ObjectCore *h_draw[8];
 
-	for (int i = 0; i < 8; i++)
+	std::vector<ObjectCore *> objects;
+
+	ObjectCore * h_draw[8];
+	ObjectCore * w_draw[10];
+
+	h_draw[0] = new Player(true, 0, 0, 0);
+	objects.push_back(h_draw[0]);
+	for (int i = 1; i < 8; i++)
 	{
-		heroes[i] = new Player(i * 50.0f, 0, i);
-		h_draw[i] = heroes[i];
+		h_draw[i] = new Player(false, i * 50.0f, 0, i);
+		objects.push_back(h_draw[i]);
+	}
+
+	for (int i = 0; i < 10; i++)
+	{
+		w_draw[i] = new Wall(34 * i, 0);
+		objects.push_back(w_draw[i]);
 	}
 
 
@@ -57,15 +70,15 @@ int main()
 		}
 		
 		
-		for (int i = 0; i < 7; i++)
+		for (int i = 0; i < objects.size() - 1; i++)
 		{
-			for (int j = i + 1; j < 8; j++)
-				heroes[i]->interSection(heroes[j]);
+			for (int j = i + 1; j < objects.size(); j++)
+				objects[i]->interSection(objects[j]);
 		}
+		
+		objects[0]->setView(&window);
 
-		heroes[0]->setView(&window);
-
-		window.clear();
+		window.clear(sf::Color(50, 50, 50));
 
 		QSort<ObjectCore> * q = nullptr;
 		for (int i = 0; i < 8; i++)
@@ -73,12 +86,19 @@ int main()
 			q = q->insert(q, h_draw[i]);
 		}
 
-		window.draw(shape);
+		for (int i = 0; i < 10; i++)
+		{
+			q = q->insert(q, w_draw[i]);
+		}
+
+		map.draw(&window);
 
 		q->draw(&window);
-		
-		window.display();
+
 		q->free();
+
+		window.display();
+		
 	}
 
 	return 0;
