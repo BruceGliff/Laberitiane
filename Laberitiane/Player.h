@@ -27,8 +27,8 @@ class Player : public ObjectCore
 	sf::View view_;
 
 public:
-	Player(bool playerF = 0, float x = 0, float y = 0, int heroNumber = 0, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, float scale = 1, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png", float speed = 0.2) :
-		ObjectCore(playerF, x, y, dx, dy, animSpeed, frames, scale, w, h, fileName),
+	Player(bool alive = 0, float x = 0, float y = 0, int heroNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, float scale = 1, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png", float speed = 0.2) :
+		ObjectCore(alive, x, y, true, true, dx, dy, animSpeed, frames, scale, w, h, fileName),
 		heroNumber_(heroNumber),
 		speed_(speed),
 		speedF_(speed)
@@ -36,6 +36,7 @@ public:
 		view_.reset(sf::FloatRect(0, 0, winX_, winY_));
 		view_.setCenter(x + w /2, y + h / 2);
 		updateRect(POS_TEX_N * heroNumber);
+		createCol();
 	}
 
 	void move(int dir, float time)
@@ -69,6 +70,15 @@ public:
 		setViewCoor(getX(), getY());
 	}
 
+	void createCol(float degree = 0)
+	{
+		col_.setSize(sf::Vector2f(w_ - 4, 3.f));
+		col_.setFillColor(sf::Color(255, 0, 0));
+		col_.setRotation(degree);
+		col_.setPosition(x_ + 2, y_ + (h_ - 2) * scale_);
+	}
+
+
 	void setViewCoor(float x, float y) { view_.setCenter(x + getW() / 2,  y + getH() / 2); }
 
 	void setView(sf::RenderWindow * window){ window->setView(view_); }
@@ -78,12 +88,14 @@ public:
 	
 	bool interSection(ObjectCore * second)
 	{
-		if (alive()) 
-			interSectionPos(second);
 
-		if (ObjectCore::interSection(second))
+		UWall * u = dynamic_cast<UWall *>(second);
+		LWall * l = dynamic_cast<LWall *>(second);
+		if ((u || l) && alive()) 
 		{
-			if (Wall * p = dynamic_cast<Wall *>(second))
+			if (alive() && u)
+				interSectionPos(second);
+			if (ObjectCore::interSection(second))
 			{
 				teleport(revDir_, lastMoveT_);
 				speed_ = 0;
@@ -96,17 +108,12 @@ public:
 
 	bool interSectionPos(ObjectCore * second)
 	{
-		Wall * p;
-		if (p = dynamic_cast<Wall *>(second))
-		{
-			if (getSpr().getGlobalBounds().intersects(second->getSpr().getGlobalBounds()) && (second->getY() < (getY() + getH())) && ((second->getY() + second->getH()) > (getY() + getH())))
-			{			
-				second->updateRect(1);
-				return true;
-			}
-			second->updateRect(0);
-			return false;
-		}		
+		if (getSpr().getGlobalBounds().intersects(second->getSpr().getGlobalBounds()) && (second->getY() < (getY() + getH())) && ((second->getY() + second->getH()) > (getY() + getH())))
+		{			
+			second->updateRect(1);
+			return true;
+		}
+		second->updateRect(0);
 		return false;
 	}
 

@@ -48,6 +48,5 @@ public:
 		window->draw(sprite);
 	}
 	
-
 	
 };

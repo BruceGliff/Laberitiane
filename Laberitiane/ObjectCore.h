@@ -5,7 +5,11 @@
 
 class ObjectCore
 {
-	bool playerF_;
+protected:
+	bool alive_;
+
+	bool active_;
+	bool visible_;
 
 	float x_;
 	float y_;
@@ -29,8 +33,10 @@ class ObjectCore
 public:
 	int delY_ = 0;
 
-	ObjectCore(bool playerF = 0, float x = 0, float y = 0, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, float scale = 1, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png") :
-		playerF_(playerF),
+	ObjectCore(bool alive = 0, float x = 0, float y = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, float scale = 1, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png", float degree = 0.f) :
+		alive_(alive),
+		active_(active),
+		visible_(visible),
 		x_(x),
 		y_(y),
 		dx_(dx),
@@ -43,17 +49,18 @@ public:
 		h_(h),
 		fileName_(fileName)
 	{
-		col_ = sf::RectangleShape(sf::Vector2f(w_, 3.0f));
-		col_.scale(scale_, scale_);
-		col_.setPosition(x_, y_ + (h_ - 2) * scale_);
 		col_.setFillColor(sf::Color(255, 0, 0));
 		tex_.loadFromFile(fileName);
 		spr_.setTexture(tex_);
 		spr_.scale(scale_, scale_);
 		spr_.setPosition(x_, y_);
+		spr_.setRotation(degree);
 	}
 
 	~ObjectCore() {}
+
+	void setActive(bool f) { active_ = f; }
+	void setVisible(bool f) { visible_ = f; }
 
 	void move(float dx, float dy, float time)
 	{
@@ -63,12 +70,13 @@ public:
 		x_ += dx_ * time;
 		y_ += dy_ * time;
 		spr_.setPosition(x_, y_);
-		col_.setPosition(x_, y_ + (h_ - 2) * scale_);
+		col_.setPosition(x_ + 2, y_ + (h_ - 2) * scale_);
 	}
 
 	virtual void move(int dir, float time) = 0;
 	virtual void setView(sf::RenderWindow * window) = 0;
 	virtual sf::View * getView() = 0;
+
 
 	virtual void updateRect(int delY = 0, float time = 0.f, int reverse = 0)
 	{
@@ -81,7 +89,7 @@ public:
 			spr_.setTextureRect(sf::IntRect(w_ * int(currFrame_ + 1), h_ * delY, -w_, h_));
 	}
 
-	bool alive() { return playerF_; }
+	bool alive() { return alive_; }
 
 
 	virtual void draw(sf::RenderWindow * window)
@@ -105,7 +113,7 @@ public:
 	{
 		if (col_.getGlobalBounds().intersects(second->col_.getGlobalBounds()))
 		{
-			std::cout << "INTERSECT" << '\n';
+			//std::cout << "INTERSECT" << '\n';
 			return true;
 		}
 

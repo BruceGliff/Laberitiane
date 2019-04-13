@@ -2,13 +2,14 @@
 #include <SFML/Graphics.hpp>
 #include "ObjectCore.h"
 
-class Wall : public ObjectCore
+class UWall : public ObjectCore
 {
 public:
-	Wall(float x = 0, float y = 0, int heroNumber = 0, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, float scale = 1, int w = 34, int h = 27, const char * fileName = "ref/images/wall.png") :
-		ObjectCore(0, x, y, dx, dy, animSpeed, frames, scale, w, h, fileName)
+	UWall(float x = 0, float y = 0, int WallNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, float scale = 1, int w = 34, int h = 27, const char * fileName = "ref/images/uwall.png") :
+		ObjectCore(false, x, y, active, visible, dx, dy, animSpeed, frames, scale, w, h, fileName)
 	{
-		updateRect(heroNumber);
+		updateRect(WallNumber);
+		createCol();
 	}
 
 
@@ -16,5 +17,38 @@ public:
 	void setView(sf::RenderWindow * window) {}
 	sf::View * getView() { return nullptr; }
 
-	//void setOpacity();
+	void createCol(float degree = 0)
+	{
+		col_.setSize(sf::Vector2f(w_ - 2, 1.f));
+		col_.setFillColor(sf::Color(255, 0, 0));
+		col_.setRotation(degree);
+		col_.setPosition(x_ + 2, y_ + h_ * scale_);
+	}
+
+};
+
+class LWall : public ObjectCore
+{
+public:
+	LWall(float x = 0, float y = 0, int WallNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, float scale = 1, int w = 34, int h = 4, const char * fileName = "ref/images/lwall.png", float degree = -90.f) :
+		ObjectCore(false, x, y, active, visible, dx, dy, animSpeed, frames, scale, w, h, fileName, degree)
+	{
+		updateRect(WallNumber);
+		createCol(degree);
+	}
+
+
+	void move(int dir, float time) {}
+	void setView(sf::RenderWindow * window) {}
+	sf::View * getView() { return nullptr; }
+
+	virtual void createCol(float degree = 0)
+	{
+		col_.setSize(sf::Vector2f(w_, h_));
+		col_.setFillColor(sf::Color(255, 0, 0));
+		col_.setRotation(degree);
+		col_.setPosition(x_, y_ );
+	}
+
+
 };
