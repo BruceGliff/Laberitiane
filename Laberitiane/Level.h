@@ -1,17 +1,14 @@
 #pragma once
 #include "Wall.h"
 #include "Map.h"
-#include "Qsort.h"
 #include <iostream>
 #include <vector>
+#include <ctime>
+#include <cstdlib>
 
 class Level
 {
 	Map * map_;
-	std::vector<ObjectCore *> vec;
-
-	int u_count_;
-	int l_count_;
 
 	int size_;
 	char * shape_;
@@ -20,24 +17,16 @@ class Level
 	{
 		int sz = (size + 1) * (size + 1);
 		
-		char * shape = new char(sz + 1);
+		char * shape = new char[sz + 1];
 		for (int i = 0; i < sz; i++)
 		{
 			shape[i] = '0';
 		}
 		shape[sz] = '\0';
-		int u_count_ = size * 2;
-		int l_count_ = size * 2;
-
-		
-
-		//ÑÎÇÄÀÍÈÅ SHAPE
-
-	
 
 		for (int i = 0; i < sz; i++)
 		{
-
+			shape[i] =  '0';
 		}
 
 
@@ -52,6 +41,10 @@ class Level
 			shape[i] = '2';
 		}
 
+		shape[9] = '3';
+		shape[14] = '1';
+		shape[13] = '2';
+
 
 		shape[size] = '1';
 		shape[sz - 1] = '1';
@@ -63,9 +56,8 @@ class Level
 
 	unsigned int rand()
 	{
-		static unsigned int seed = 4541;
-		seed = (8253729 * seed + 2396403);
-		return seed % 32768;
+		std::srand(unsigned(std::time(0)));
+		return std::rand();
 	}
 
 public:
@@ -74,13 +66,16 @@ public:
 	{
 		map_ = new Map(size, 0);
 		shape_ = gnrShape(size);
-		
 	}
 
-	void draw(sf::RenderWindow * window, QSort<ObjectCore> * q)
+	void draw(sf::RenderWindow * window)
 	{
 		map_->draw(window);
-		/*/
+	}
+
+
+	void insert(std::vector<ObjectCore *> & vec)
+	{
 		for (int i = 0; i < (size_ + 1) * (size_ + 1); i++)
 		{
 			switch (shape_[i])
@@ -88,25 +83,20 @@ public:
 			case '0':
 				break;
 			case '1':
-				vec.push_back(new LWall((i % (size_ + 1)) * 34.f, (i / (size_ + 1)) * 34.f));
+				vec.push_back(new LWall((i % (size_ + 1)) * 34.f, (i / (size_ + 1)) * 34.f - 34.f));
 				break;
 			case '2':
-				vec.push_back(new UWall((i % (size_ + 1)) * 34.f, (i / (size_ + 1)) * 34.f + 34.f));
+				vec.push_back(new UWall((i % (size_ + 1)) * 34.f, (i / (size_ + 1)) * 34.f - 27.f));
 				break;
 			case '3':
-				vec.push_back(new LWall((i % (size_ + 1)) * 34.f, (i / (size_ + 1)) * 34.f));
-				vec.push_back(new UWall((i % (size_ + 1)) * 34.f, (i / (size_ + 1)) * 34.f + 34.f));
+				vec.push_back(new LWall((i % (size_ + 1)) * 34.f, (i / (size_ + 1)) * 34.f - 34.f));
+				vec.push_back(new UWall((i % (size_ + 1)) * 34.f, (i / (size_ + 1)) * 34.f - 27.f));
 				break;
 
 			default:
 				break;
 			}
 		}
-
-		for (auto x : vec)
-		{
-			x->draw(window);
-		}*/
 	}
 };
 

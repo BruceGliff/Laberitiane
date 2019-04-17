@@ -22,18 +22,18 @@ class Player : public ObjectCore
 	float speedF_;
 	float lastMoveT_;
 
-	int winX_ = 320;
-	int winY_ = 180;
+	float winX_ = 320;
+	float winY_ = 180;
 	sf::View view_;
 
 public:
-	Player(bool alive = 0, float x = 0, float y = 0, int heroNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, float scale = 1, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png", float speed = 0.2) :
-		ObjectCore(alive, x, y, true, true, dx, dy, animSpeed, frames, scale, w, h, fileName),
+	Player(bool alive = 0, float x = 0, float y = 0, int heroNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png", float speed = 0.2) :
+		ObjectCore(alive, x, y, true, true, dx, dy, animSpeed, frames, w, h, fileName),
 		heroNumber_(heroNumber),
 		speed_(speed),
 		speedF_(speed)
 	{
-		view_.reset(sf::FloatRect(0, 0, winX_, winY_));
+		view_.reset(sf::FloatRect(0.f, 0.f, winX_, winY_));
 		view_.setCenter(x + w /2, y + h / 2);
 		updateRect(POS_TEX_N * heroNumber);
 		createCol();
@@ -72,10 +72,10 @@ public:
 
 	void createCol(float degree = 0)
 	{
-		col_.setSize(sf::Vector2f(w_ - 4, 3.f));
+		col_.setSize(sf::Vector2f(w_ - 4.f, 3.f));
 		col_.setFillColor(sf::Color(255, 0, 0));
 		col_.setRotation(degree);
-		col_.setPosition(x_ + 2, y_ + (h_ - 2) * scale_);
+		col_.setPosition(x_ + 2, y_ + h_ - 2);
 	}
 
 

@@ -136,6 +136,11 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">False</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">False</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="RunGame.hpp" />
+    <ClCompile Include="RunLevel_2nd.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Test.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">True</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">True</ExcludedFromBuild>
@@ -147,6 +152,10 @@
     <ClInclude Include="ObjectCore.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Qsort.h" />
+    <ClInclude Include="RunLevel.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Sort.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>

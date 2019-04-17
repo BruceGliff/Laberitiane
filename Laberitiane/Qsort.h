@@ -315,7 +315,7 @@ public:
 	QSort * insert(QSort * p, ObjectCore * k)
 	{
 		if (!p) return new QSort(k);
-		if ((k->getY() + k->getHS()) < (p->key_->getY() + p->key_->getHS()))
+		if ((k->getY() + k->getH()) < (p->key_->getY() + p->key_->getH()))
 			p->left_ = insert(p->left_, k);
 		else
 			p->right_ = insert(p->right_, k);

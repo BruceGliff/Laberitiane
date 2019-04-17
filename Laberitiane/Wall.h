@@ -5,8 +5,8 @@
 class UWall : public ObjectCore
 {
 public:
-	UWall(float x = 0, float y = 0, int WallNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, float scale = 1, int w = 34, int h = 27, const char * fileName = "ref/images/uwall.png") :
-		ObjectCore(false, x, y, active, visible, dx, dy, animSpeed, frames, scale, w, h, fileName)
+	UWall(float x = 0, float y = 0, int WallNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, int w = 34, int h = 27, const char * fileName = "ref/images/uwall.png") :
+		ObjectCore(false, x, y, active, visible, dx, dy, animSpeed, frames, w, h, fileName)
 	{
 		updateRect(WallNumber);
 		createCol();
@@ -19,10 +19,10 @@ public:
 
 	void createCol(float degree = 0)
 	{
-		col_.setSize(sf::Vector2f(w_ - 2, 1.f));
+		col_.setSize(sf::Vector2f(w_ - 2.f, 1.f));
 		col_.setFillColor(sf::Color(255, 0, 0));
 		col_.setRotation(degree);
-		col_.setPosition(x_ + 2, y_ + h_ * scale_);
+		col_.setPosition(x_ + 2, y_ + h_);
 	}
 
 };
@@ -30,8 +30,8 @@ public:
 class LWall : public ObjectCore
 {
 public:
-	LWall(float x = 0, float y = 0, int WallNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, float scale = 1, int w = 34, int h = 4, const char * fileName = "ref/images/lwall.png", float degree = -90.f) :
-		ObjectCore(false, x, y, active, visible, dx, dy, animSpeed, frames, scale, w, h, fileName, degree)
+	LWall(float x = 0, float y = 0, int WallNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, int w = 4, int h = 34, const char * fileName = "ref/images/lwall_v1.png", float degree = 0) :
+		ObjectCore(false, x, y, active, visible, dx, dy, animSpeed, frames, w, h, fileName, degree)
 	{
 		updateRect(WallNumber);
 		createCol(degree);
@@ -44,11 +44,8 @@ public:
 
 	virtual void createCol(float degree = 0)
 	{
-		col_.setSize(sf::Vector2f(w_, h_));
+		col_.setSize(sf::Vector2f(float(w_), float(h_)));
 		col_.setFillColor(sf::Color(255, 0, 0));
-		col_.setRotation(degree);
 		col_.setPosition(x_, y_ );
 	}
-
-
 };

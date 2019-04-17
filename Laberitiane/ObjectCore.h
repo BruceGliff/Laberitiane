@@ -23,7 +23,6 @@ protected:
 	sf::Texture tex_;
 	sf::Sprite spr_;
 	sf::RectangleShape col_;
-	float scale_;
 
 	int w_;
 	int h_;
@@ -33,7 +32,7 @@ protected:
 public:
 	int delY_ = 0;
 
-	ObjectCore(bool alive = 0, float x = 0, float y = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, float scale = 1, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png", float degree = 0.f) :
+	ObjectCore(bool alive = 0, float x = 0, float y = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png", float degree = 0.f) :
 		alive_(alive),
 		active_(active),
 		visible_(visible),
@@ -44,7 +43,6 @@ public:
 		animSpeed_(animSpeed),
 		frames_(frames),
 		currFrame_(0),
-		scale_(scale),
 		w_(w),
 		h_(h),
 		fileName_(fileName)
@@ -52,7 +50,6 @@ public:
 		col_.setFillColor(sf::Color(255, 0, 0));
 		tex_.loadFromFile(fileName);
 		spr_.setTexture(tex_);
-		spr_.scale(scale_, scale_);
 		spr_.setPosition(x_, y_);
 		spr_.setRotation(degree);
 	}
@@ -70,7 +67,7 @@ public:
 		x_ += dx_ * time;
 		y_ += dy_ * time;
 		spr_.setPosition(x_, y_);
-		col_.setPosition(x_ + 2, y_ + (h_ - 2) * scale_);
+		col_.setPosition(x_ + 2, y_ + h_ - 2);
 	}
 
 	virtual void move(int dir, float time) = 0;
@@ -102,9 +99,6 @@ public:
 	float getY() { return y_; }
 	int getH() { return h_; }
 	int getW() { return w_; }
-
-	int getHS() { return h_ * scale_; }
-	int getWS() { return w_ * scale_; }
 
 	sf::Sprite & getSpr() { return spr_; }
 

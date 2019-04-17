@@ -15,28 +15,25 @@ class Map
 
 	int size_;
 	int width_;
-	int scale_;
 
 	const char * fileName_;
 public:
-	Map(int size = 5, int num = 5, int width = 34, int scale = 1, const char * fileName = "ref/images/flour.png") :
+	Map(int size = 5, int num = 5, int width = 34, const char * fileName = "ref/images/flour.png") :
 		num_(num),
 		size_(size),
 		width_(width),
-		scale_(scale),
 		fileName_(fileName)
 	{
 		tex_.loadFromFile(fileName);
 		spr_.setTexture(tex_);
-		spr_.scale(scale, scale);
-		spr_.setPosition(0, 0);
+		spr_.setPosition(0.f, 0.f);
 		spr_.setTextureRect(sf::IntRect(width_ * num_, 0, width_, width_));
 
-		map_.create(width_ * size_ * scale_, width_ * size_ * scale_);
+		map_.create(width_ * size_, width_ * size_);
 		map_.clear();
 		for(int k = 0; k < size_ * size_;  k++)
 		{
-			spr_.setPosition(sf::Vector2f((k % size_) * width_ * scale_, (k / size_) * width_ * scale_));
+			spr_.setPosition(sf::Vector2f(float(k % size_) * width_, float(k / size_) * width_));
 			map_.draw(spr_);
 		}
 	}
