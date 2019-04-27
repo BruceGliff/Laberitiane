@@ -56,6 +56,9 @@
     <ClInclude Include="RunLevel.hpp">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Player.txt" />
@@ -71,6 +74,9 @@
       <Filter>Файлы ресурсов\images</Filter>
     </Image>
     <Image Include="ref\images\lwall.png">
+      <Filter>Файлы ресурсов\images</Filter>
+    </Image>
+    <Image Include="ref\images\bullet.png">
       <Filter>Файлы ресурсов\images</Filter>
     </Image>
   </ItemGroup>

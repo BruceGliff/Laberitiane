@@ -3,6 +3,14 @@
 
 #include <iostream>
 
+enum direction
+{
+	Up = 0,
+	Right,
+	Down,
+	Left
+};
+
 class ObjectCore
 {
 protected:
@@ -23,6 +31,7 @@ protected:
 	sf::Texture tex_;
 	sf::Sprite spr_;
 	sf::RectangleShape col_;
+	sf::RectangleShape bullCol_;
 
 	int w_;
 	int h_;
@@ -47,7 +56,6 @@ public:
 		h_(h),
 		fileName_(fileName)
 	{
-		col_.setFillColor(sf::Color(255, 0, 0));
 		tex_.loadFromFile(fileName);
 		spr_.setTexture(tex_);
 		spr_.setPosition(x_, y_);
@@ -68,11 +76,13 @@ public:
 		y_ += dy_ * time;
 		spr_.setPosition(x_, y_);
 		col_.setPosition(x_ + 2, y_ + h_ - 2);
+		bullCol_.setPosition(x_ + 3, y_ + h_ / 2 - 3.f);
 	}
 
 	virtual void move(int dir, float time) = 0;
 	virtual void setView(sf::RenderWindow * window) = 0;
 	virtual sf::View * getView() = 0;
+	virtual void spawn(float x, float y, int dir) {}
 
 
 	virtual void updateRect(int delY = 0, float time = 0.f, int reverse = 0)
@@ -81,18 +91,26 @@ public:
 		if (currFrame_ >= frames_) currFrame_ -= frames_;
 
 		if (!reverse)
+		{
 			spr_.setTextureRect(sf::IntRect(w_ * int(currFrame_), h_ * delY, w_, h_));
+		}
 		else
 			spr_.setTextureRect(sf::IntRect(w_ * int(currFrame_ + 1), h_ * delY, -w_, h_));
 	}
 
 	bool alive() { return alive_; }
+	bool active() { return active_; }
 
 
 	virtual void draw(sf::RenderWindow * window)
 	{
-		window->draw(col_);
-		window->draw(spr_);
+		if (active_)
+		{
+			
+			window->draw(col_);
+			window->draw(spr_);
+			window->draw(bullCol_);
+		}		
 	}
 
 	float getX() { return x_; }

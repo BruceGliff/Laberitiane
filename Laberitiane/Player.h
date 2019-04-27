@@ -6,29 +6,23 @@
 constexpr auto REVERS_TEX = 1;
 constexpr auto POS_TEX_N = 3;
 
-enum direction
-{
-	Up = 0,
-	Right,
-	Down,
-	Left
-};
 
 class Player : public ObjectCore
 {
 	int heroNumber_;
 	int revDir_;
+	int dir_;
 	float speed_;
 	float speedF_;
 	float lastMoveT_;
 
-	float winX_ = 320;
-	float winY_ = 180;
+	float winX_ = 300;
+	float winY_ = 240;
 	sf::View view_;
 
 public:
 	Player(bool alive = 0, float x = 0, float y = 0, int heroNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png", float speed = 0.2) :
-		ObjectCore(alive, x, y, true, true, dx, dy, animSpeed, frames, w, h, fileName),
+		ObjectCore(alive, x, y, active, visible, dx, dy, animSpeed, frames, w, h, fileName),
 		heroNumber_(heroNumber),
 		speed_(speed),
 		speedF_(speed)
@@ -37,12 +31,14 @@ public:
 		view_.setCenter(x + w /2, y + h / 2);
 		updateRect(POS_TEX_N * heroNumber);
 		createCol();
+		dir_ = Down;
 	}
 
 	void move(int dir, float time)
 	{
 		lastMoveT_ = time;
 		dir %= 4;
+		dir_ = dir;
 		switch (dir)
 		{
 		case Up:
@@ -76,6 +72,11 @@ public:
 		col_.setFillColor(sf::Color(255, 0, 0));
 		col_.setRotation(degree);
 		col_.setPosition(x_ + 2, y_ + h_ - 2);
+
+		bullCol_.setSize(sf::Vector2f(w_ - 6.f, 1.f));
+		bullCol_.setFillColor(sf::Color(0, 0, 255));
+		bullCol_.setRotation(degree);
+		bullCol_.setPosition(x_ + 3, y_ + h_ / 2 - 3.f);
 	}
 
 
@@ -84,6 +85,7 @@ public:
 	void setView(sf::RenderWindow * window){ window->setView(view_); }
 
 	sf::View * getView() { return &view_; }
+	int getDir() { return dir_; }
 
 	
 	bool interSection(ObjectCore * second)
@@ -108,7 +110,7 @@ public:
 
 	bool interSectionPos(ObjectCore * second)
 	{
-		if (getSpr().getGlobalBounds().intersects(second->getSpr().getGlobalBounds()) && (second->getY() < (getY() + getH())) && ((second->getY() + second->getH()) > (getY() + getH())))
+		if ((getX() + getW() - 4 > second->getX()) && (getSpr().getGlobalBounds().intersects(second->getSpr().getGlobalBounds())) && (second->getY() < (getY() + getH())) && ((second->getY() + second->getH()) > (getY() + getH())))
 		{			
 			second->updateRect(1);
 			return true;

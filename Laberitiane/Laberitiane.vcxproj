@@ -147,6 +147,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="ObjectCore.h" />
@@ -163,6 +164,7 @@
     <Text Include="Player.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="ref\images\bullet.png" />
     <Image Include="ref\images\flour.png" />
     <Image Include="ref\images\lwall.png" />
     <Image Include="ref\images\skins.png" />
