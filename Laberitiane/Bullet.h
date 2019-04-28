@@ -8,7 +8,7 @@ class Bullet : public ObjectCore
 	float speed_;
 
 public:
-	Bullet(bool alive = 0, float x = 0, float y = 0, bool active = false, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, int w = 4, int h = 2, const char * fileName = "ref/images/bullet.png", float speed = 1.f) :
+	Bullet(bool alive = 0, float x = 0, float y = 0, bool active = false, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, int w = 4, int h = 2, const char * fileName = "ref/images/bullet.png", float speed = 0.7f) :
 		ObjectCore(alive, x, y, active, visible, dx, dy, animSpeed, frames, w, h, fileName),
 		speed_(speed)
 	{
@@ -45,14 +45,14 @@ public:
 			break;
 		case Left:
 			rotate(180);
-			spr_.setOrigin(0, -100.f);
-			x_ += 6.f + x; y_ += y + 10.f + 100.f;
+			spr_.setOrigin(0, -4.f);
+			x_ += 6.f + x; y_ += y + 10.f + 4.f;
 			spr_.setPosition(x_, y_);
 			break;
 		case Right:
 			rotate(0);
-			spr_.setOrigin(0, 100.f);
-			x_ += 10.f + x; y_ += y + 10.f + 100.f;
+			spr_.setOrigin(0, 4.f);
+			x_ += 10.f + x; y_ += y + 10.f + 4.f;
 			spr_.setPosition(x_, y_);
 			break;
 		}

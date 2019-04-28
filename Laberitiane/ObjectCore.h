@@ -83,7 +83,8 @@ public:
 	virtual void setView(sf::RenderWindow * window) = 0;
 	virtual sf::View * getView() = 0;
 	virtual void spawn(float x, float y, int dir) {}
-
+	virtual int getDir() { return 0; }
+	virtual void evnt(float time, float globTime) {}
 
 	virtual void updateRect(int delY = 0, float time = 0.f, int reverse = 0)
 	{

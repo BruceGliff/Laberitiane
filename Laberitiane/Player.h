@@ -2,9 +2,26 @@
 
 #include <SFML/Graphics.hpp>
 #include "Wall.h"
+#include "Gun.h"
 
 constexpr auto REVERS_TEX = 1;
 constexpr auto POS_TEX_N = 3;
+
+#define MOVEMENT(btn, player)\
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::##btn) && !event_F)\
+		{\
+		event_F = true;\
+		player->move(btn, time);\
+		}
+
+#define MOVE(player)\
+		{\
+		bool event_F = false;\
+		MOVEMENT(Up, player);\
+		MOVEMENT(Right, player);\
+		MOVEMENT(Down, player);\
+		MOVEMENT(Left, player);\
+		}
 
 
 class Player : public ObjectCore
@@ -20,8 +37,10 @@ class Player : public ObjectCore
 	float winY_ = 240;
 	sf::View view_;
 
+	Gun * pistol_;
+
 public:
-	Player(bool alive = 0, float x = 0, float y = 0, int heroNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png", float speed = 0.2) :
+	Player(std::vector<ObjectCore *> & vec, bool alive = 0, float x = 0, float y = 0, int heroNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png", float speed = 0.2) :
 		ObjectCore(alive, x, y, active, visible, dx, dy, animSpeed, frames, w, h, fileName),
 		heroNumber_(heroNumber),
 		speed_(speed),
@@ -32,6 +51,8 @@ public:
 		updateRect(POS_TEX_N * heroNumber);
 		createCol();
 		dir_ = Down;
+		pistol_ = new Gun(vec, 1000);
+		vec.push_back(this);
 	}
 
 	void move(int dir, float time)
@@ -143,6 +164,12 @@ public:
 		setViewCoor(getX(), getY());
 	}
 	
+	void evnt(float time, float globTime)
+	{
+		MOVE(this);
+		pistol_->shot(this, time, globTime);		
+	}
+
 
 };
 
