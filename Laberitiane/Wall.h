@@ -23,6 +23,11 @@ public:
 		col_.setFillColor(sf::Color(255, 0, 0));
 		col_.setRotation(degree);
 		col_.setPosition(x_ + 2, y_ + h_);
+
+		horiCol_.setSize(sf::Vector2f(w_, 1.f));
+		horiCol_.setFillColor(sf::Color(0, 0, 255));
+		horiCol_.setRotation(degree);
+		horiCol_.setPosition(x_, y_ + h_ / 2 - 3.f);
 	}
 
 };
@@ -47,5 +52,15 @@ public:
 		col_.setSize(sf::Vector2f(float(w_), float(h_)));
 		col_.setFillColor(sf::Color(255, 0, 0));
 		col_.setPosition(x_, y_ );
+
+		vertCol_.setSize(sf::Vector2f(1.f, h_));
+		vertCol_.setFillColor(sf::Color(0, 255, 0));
+		vertCol_.setRotation(degree);
+		vertCol_.setPosition(x_ + w_ / 2, y_);
+
+		horiCol_.setSize(sf::Vector2f(w_, 1.f));
+		horiCol_.setFillColor(sf::Color(0, 0, 255));
+		horiCol_.setRotation(degree);
+		horiCol_.setPosition(x_, y_ + h_ / 2 + 7.f);
 	}
 };

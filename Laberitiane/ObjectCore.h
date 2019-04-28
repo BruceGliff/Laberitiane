@@ -31,7 +31,8 @@ protected:
 	sf::Texture tex_;
 	sf::Sprite spr_;
 	sf::RectangleShape col_;
-	sf::RectangleShape bullCol_;
+	sf::RectangleShape horiCol_;
+	sf::RectangleShape vertCol_;
 
 	int w_;
 	int h_;
@@ -76,7 +77,8 @@ public:
 		y_ += dy_ * time;
 		spr_.setPosition(x_, y_);
 		col_.setPosition(x_ + 2, y_ + h_ - 2);
-		bullCol_.setPosition(x_ + 3, y_ + h_ / 2 - 3.f);
+		horiCol_.setPosition(x_ + 3, y_ + h_ / 2 - 3.f);
+		vertCol_.setPosition(x_ + w_ / 2, y_);
 	}
 
 	virtual void move(int dir, float time) = 0;
@@ -84,7 +86,7 @@ public:
 	virtual sf::View * getView() = 0;
 	virtual void spawn(float x, float y, int dir) {}
 	virtual int getDir() { return 0; }
-	virtual void evnt(float time, float globTime) {}
+	virtual void evnt(float time, float globTime, sf::RenderWindow * window) {}
 
 	virtual void updateRect(int delY = 0, float time = 0.f, int reverse = 0)
 	{
@@ -110,7 +112,8 @@ public:
 			
 			window->draw(col_);
 			window->draw(spr_);
-			window->draw(bullCol_);
+			window->draw(horiCol_);
+			window->draw(vertCol_);
 		}		
 	}
 
@@ -120,6 +123,9 @@ public:
 	int getW() { return w_; }
 
 	sf::Sprite & getSpr() { return spr_; }
+	sf::RectangleShape & getCol() { return col_; }
+	sf::RectangleShape & getVertCol() { return vertCol_; }
+	sf::RectangleShape & getHoriCol() { return horiCol_; }
 
 	
 	virtual bool interSection(ObjectCore * second)

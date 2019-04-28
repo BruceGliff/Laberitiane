@@ -89,5 +89,15 @@ public:
 		col_.rotate(-curr_deg + degrees);
 	}
 
+	bool interSection(ObjectCore * second)
+	{
+		if ((spr_.getGlobalBounds().intersects(second->getHoriCol().getGlobalBounds()) && (dir_ == Down || dir_ == Up)) 
+			|| (spr_.getGlobalBounds().intersects(second->getVertCol().getGlobalBounds()) && (dir_ == Left || dir_ == Right)))
+		{
+			active_ = false;
+			return true;
+		}
 
+		return false;
+	}
 };

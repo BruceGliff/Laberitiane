@@ -9,13 +9,15 @@ class Gun
 	
 	float lastShot_;
 	float cDown_;
+	float fireTime_;
 
 public:
 	Gun(std::vector<ObjectCore *> & vec, int capacity = 10, float cDown = 0.2f) :
 		capacity_(capacity),
 		top_(0),
 		cDown_(cDown),
-		lastShot_(0.f)
+		lastShot_(0.f),
+		fireTime_(0.3f)
 	{
 		for (int i = 0; i < capacity; i++)
 		{
@@ -24,22 +26,28 @@ public:
 		}
 	}
 
-	void shot(ObjectCore * player, float time, float globTime)
+	void shot(ObjectCore * player, float time, float globTime, sf::RenderWindow * window)
 	{
-			for (auto bullet : store_)
+		//for (auto bullet : store_)
+		//{
+			//float x = 0, y = 0;
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !store_[top_]->active() && globTime - lastShot_ > cDown_ && top_ < capacity_)
 			{
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !bullet->active() && globTime - lastShot_ > cDown_)
-				{
-					float x = player->getX();
-					float y = player->getY();
-					bullet->spawn(x, y, player->getDir());
-					lastShot_ = globTime;
-				}
-				if (bullet->active())
-				{
-					bullet->move(0, time);
-				}
+				float x = player->getX();
+				float y = player->getY();
+				store_[top_]->spawn(x, y, player->getDir());
+				lastShot_ = globTime;
+				top_++;
 			}
+		//}
+
+		for (auto bullet : store_)
+		{
+			if (bullet->active())
+			{
+				bullet->move(0, time);
+			}
+		}
 	}
 
 };

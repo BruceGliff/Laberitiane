@@ -41,7 +41,7 @@ int RunLevel()
 				window->close();
 		}
 
-		player->evnt(time, globTime);
+		player->evnt(time, globTime, window);
 
 
 		for (uInt i = 0; i < objects.size(); i++)

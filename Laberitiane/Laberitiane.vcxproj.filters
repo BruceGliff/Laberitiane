@@ -82,5 +82,8 @@
     <Image Include="ref\images\bullet.png">
       <Filter>Файлы ресурсов\images</Filter>
     </Image>
+    <Image Include="ref\images\fire.png">
+      <Filter>Файлы ресурсов\images</Filter>
+    </Image>
   </ItemGroup>
 </Project>
