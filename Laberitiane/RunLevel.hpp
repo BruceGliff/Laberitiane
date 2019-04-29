@@ -13,6 +13,7 @@ int RunLevel()
 
 	int winX = 1600;
 	int winY = 900;
+	float dt = 0;
 
 	sf::RenderWindow * window = new sf::RenderWindow(sf::VideoMode(winX, winY), "Laberitianin");
 
@@ -21,17 +22,24 @@ int RunLevel()
 	Level lvl(5);
 	
 	std::vector<ObjectCore *> objects;
+
 	ObjectCore * player = new Player(objects, true, 10, 20, 0);
+	objects.push_back(player);
+
+	objects.push_back(new Player(objects, false, 10, 50, 1));
+
 
 	lvl.insert(objects);
 	
 	sf::Clock clock;
 	while (window->isOpen())
 	{
-				
 		float time = float(clock.getElapsedTime().asMicroseconds());
-		globTime += time / 1000000;
+
 		clock.restart();
+		
+		globTime += time / 1000000;
+		dt = time / 1000000;
 		time /= 1800;
 
 		sf::Event event;
@@ -46,13 +54,12 @@ int RunLevel()
 
 		for (uInt i = 0; i < objects.size(); i++)
 		{
-			if (objects[i]->active())
 				for (uInt j = i + 1; j < objects.size(); j++)
-					objects[i]->interSection(objects[j]);
+					if (objects[i]->active() && objects[j]->active())
+						objects[i]->interSection(objects[j]);
 		}
 
 		player->setView(window);
-
 		
 
 		QSort<ObjectCore> * q = nullptr;
@@ -69,6 +76,13 @@ int RunLevel()
 		q->free();
 
 		window->display();
+		
+		std::cout << 1 / dt << '\n';
+	}
+
+	for (auto x : objects)
+	{
+		//delete x;
 	}
 
 	return 0;

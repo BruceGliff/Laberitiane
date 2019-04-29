@@ -6,7 +6,7 @@ class Gun
 	std::vector <Bullet *> store_;
 	int capacity_;
 	int top_;
-	
+
 	float lastShot_;
 	float cDown_;
 	float fireTime_;
@@ -19,7 +19,7 @@ public:
 		lastShot_(0.f),
 		fireTime_(0.3f)
 	{
-		for (int i = 0; i < capacity; i++)
+		for (int i = 0; i <= capacity; i++)
 		{
 			store_.push_back(new Bullet());
 			vec.push_back(store_[i]);
@@ -28,18 +28,14 @@ public:
 
 	void shot(ObjectCore * player, float time, float globTime, sf::RenderWindow * window)
 	{
-		//for (auto bullet : store_)
-		//{
-			//float x = 0, y = 0;
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !store_[top_]->active() && globTime - lastShot_ > cDown_ && top_ < capacity_)
-			{
-				float x = player->getX();
-				float y = player->getY();
-				store_[top_]->spawn(x, y, player->getDir());
-				lastShot_ = globTime;
-				top_++;
-			}
-		//}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !store_[top_]->active() && globTime - lastShot_ > cDown_ && top_ < capacity_)
+		{
+			float x = player->getX();
+			float y = player->getY();
+			store_[top_]->spawn(x, y, player->getDir());
+			lastShot_ = globTime;
+			top_++;
+		}
 
 		for (auto bullet : store_)
 		{
@@ -47,6 +43,14 @@ public:
 			{
 				bullet->move(0, time);
 			}
+		}
+	}
+
+	void reload()
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+		{
+			top_ = 0;
 		}
 	}
 

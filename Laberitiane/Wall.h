@@ -5,7 +5,7 @@
 class UWall : public ObjectCore
 {
 public:
-	UWall(float x = 0, float y = 0, int WallNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, int w = 34, int h = 27, const char * fileName = "ref/images/uwall.png") :
+	UWall(float x = 0, float y = 0, int WallNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, int w = 34, int h = 27, const char * fileName = "ref/images/uwall1.png") :
 		ObjectCore(false, x, y, active, visible, dx, dy, animSpeed, frames, w, h, fileName)
 	{
 		updateRect(WallNumber);
@@ -19,12 +19,12 @@ public:
 
 	void createCol(float degree = 0)
 	{
-		col_.setSize(sf::Vector2f(w_ - 2.f, 1.f));
+		col_.setSize(sf::Vector2f(w_ - 2.f, 3.f));
 		col_.setFillColor(sf::Color(255, 0, 0));
 		col_.setRotation(degree);
-		col_.setPosition(x_ + 2, y_ + h_);
+		col_.setPosition(x_ + 2.f, y_ + h_ - 2.f);
 
-		horiCol_.setSize(sf::Vector2f(w_, 1.f));
+		horiCol_.setSize(sf::Vector2f(w_ - 0.f, 12.f));
 		horiCol_.setFillColor(sf::Color(0, 0, 255));
 		horiCol_.setRotation(degree);
 		horiCol_.setPosition(x_, y_ + h_ / 2 - 3.f);
@@ -53,14 +53,14 @@ public:
 		col_.setFillColor(sf::Color(255, 0, 0));
 		col_.setPosition(x_, y_ );
 
-		vertCol_.setSize(sf::Vector2f(1.f, h_));
+		vertCol_.setSize(sf::Vector2f(w_ - 0.f, h_ - 0.f));
 		vertCol_.setFillColor(sf::Color(0, 255, 0));
 		vertCol_.setRotation(degree);
-		vertCol_.setPosition(x_ + w_ / 2, y_);
+		vertCol_.setPosition(x_, y_);
 
-		horiCol_.setSize(sf::Vector2f(w_, 1.f));
+		horiCol_.setSize(sf::Vector2f(w_ - 0.f, h_ - 0.f));
 		horiCol_.setFillColor(sf::Color(0, 0, 255));
 		horiCol_.setRotation(degree);
-		horiCol_.setPosition(x_, y_ + h_ / 2 + 7.f);
+		horiCol_.setPosition(x_, y_);
 	}
 };

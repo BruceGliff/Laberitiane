@@ -15,6 +15,7 @@ class ObjectCore
 {
 protected:
 	bool alive_;
+	bool isPlayer_;
 
 	bool active_;
 	bool visible_;
@@ -42,8 +43,9 @@ protected:
 public:
 	int delY_ = 0;
 
-	ObjectCore(bool alive = 0, float x = 0, float y = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png", float degree = 0.f) :
+	ObjectCore(bool alive = 0, float x = 0, float y = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0.02f, int frames = 3, int w = 16, int h = 16, const char * fileName = "ref/images/skins.png", float degree = 0.f, bool isPlayer = false) :
 		alive_(alive),
+		isPlayer_(isPlayer),
 		active_(active),
 		visible_(visible),
 		x_(x),
@@ -103,6 +105,7 @@ public:
 
 	bool alive() { return alive_; }
 	bool active() { return active_; }
+	bool player() { return isPlayer_; }
 
 
 	virtual void draw(sf::RenderWindow * window)
@@ -110,10 +113,10 @@ public:
 		if (active_)
 		{
 			
-			window->draw(col_);
+			//window->draw(col_);
 			window->draw(spr_);
-			window->draw(horiCol_);
-			window->draw(vertCol_);
+			//window->draw(horiCol_);
+			//window->draw(vertCol_);
 		}		
 	}
 

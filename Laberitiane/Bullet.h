@@ -26,6 +26,10 @@ public:
 
 	void spawn(float x, float y, int dir) 
 	{
+		rotate(0);
+		spr_.setOrigin(0, 0);
+		x_ = 0; y_ = 0;
+
 		dir %= 4;
 		active_ = true;
 		dir_ = dir;
@@ -39,8 +43,8 @@ public:
 			break;
 		case Down:
 			rotate(90);
-			spr_.setOrigin(8.f, 0);
-			x_ += 7.f + x; y_ += y + 5.f + 12.f;
+			spr_.setOrigin(8.f, 0);//8
+			x_ += 7.f + x; y_ += y + 5.f + 12.f;//+12
 			spr_.setPosition(x_, y_);
 			break;
 		case Left:
@@ -94,6 +98,11 @@ public:
 		if ((spr_.getGlobalBounds().intersects(second->getHoriCol().getGlobalBounds()) && (dir_ == Down || dir_ == Up)) 
 			|| (spr_.getGlobalBounds().intersects(second->getVertCol().getGlobalBounds()) && (dir_ == Left || dir_ == Right)))
 		{
+			if (second->player())
+			{
+				second->setActive(false);
+			}
+
 			active_ = false;
 			return true;
 		}
