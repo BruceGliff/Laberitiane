@@ -7,7 +7,7 @@
 
 typedef unsigned int uInt;
 
-int RunLevel()
+int RunLevel(int heroNumber = 0)
 {
 	setlocale(LC_ALL, "Russian");
 
@@ -23,7 +23,7 @@ int RunLevel()
 	
 	std::vector<ObjectCore *> objects;
 
-	ObjectCore * player = new Player(objects, true, 10, 20, 0);
+	ObjectCore * player = new Player(objects, true, 10, 20, heroNumber);
 	objects.push_back(player);
 
 	objects.push_back(new Player(objects, false, 10, 50, 1));

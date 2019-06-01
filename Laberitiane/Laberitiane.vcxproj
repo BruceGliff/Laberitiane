@@ -141,6 +141,8 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Gun.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="MainPage.hpp" />
+    <ClInclude Include="mainWindow.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="ObjectCore.h" />
     <ClInclude Include="Player.h" />
@@ -162,8 +164,11 @@
     <Image Include="ref\images\bullet.png" />
     <Image Include="ref\images\fire.png" />
     <Image Include="ref\images\flour.png" />
+    <Image Include="ref\images\Laberetiane.png" />
     <Image Include="ref\images\lwall.png" />
+    <Image Include="ref\images\mainTheme.png" />
     <Image Include="ref\images\skins.png" />
+    <Image Include="ref\images\StartBtn.png" />
     <Image Include="ref\images\uwall.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

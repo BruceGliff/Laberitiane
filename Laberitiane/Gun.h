@@ -54,5 +54,13 @@ public:
 		}
 	}
 
+	~Gun()
+	{
+		for (auto x : store_)
+		{
+			delete x;
+		}
+	}
+
 };
 

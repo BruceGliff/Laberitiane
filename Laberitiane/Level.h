@@ -29,6 +29,7 @@ class Level
 			shape[i] =  '0';
 		}
 
+		/* ÒÎËÜÊÎ İÒÓ ×ÀÑÒÜ */
 		shape[2] = '1';
 		shape[3] = '2';
 		shape[4] = '3';
@@ -53,6 +54,8 @@ class Level
 		shape[24] = '2';
 		shape[25] = '3';
 		shape[26] = '2';
+		/*  END  */
+
 
 		for (int i = 1; i <= size - 1; i++)
 		{
