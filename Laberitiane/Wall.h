@@ -35,7 +35,7 @@ public:
 class LWall : public ObjectCore
 {
 public:
-	LWall(float x = 0, float y = 0, int WallNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, int w = 4, int h = 34, const char * fileName = "ref/images/lwall_v1.png", float degree = 0) :
+	LWall(float x = 0, float y = 0, int WallNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, int w = 4, int h = 34, const char * fileName = "ref/images/lwall.png", float degree = 0) :
 		ObjectCore(false, x, y, active, visible, dx, dy, animSpeed, frames, w, h, fileName, degree)
 	{
 		updateRect(WallNumber);

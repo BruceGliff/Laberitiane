@@ -2,9 +2,8 @@
 
 int startGame()
 {
-	int winX = 1600;
-	int winY = 900;
-	sf::RenderWindow * window = new sf::RenderWindow(sf::VideoMode(winX, winY), "Laberitianin");
+	Size<int> window_s(1600, 900);
+	sf::RenderWindow * window = new sf::RenderWindow(sf::VideoMode(window_s.x(), window_s.y()), "Laberitianin");
 
 	MainWindow Window;
 
@@ -21,9 +20,13 @@ int startGame()
 		while (window->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
+			{
 				window->close();
+				return -1;
+			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 				heroNumber--;
+
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 				heroNumber++;
 			heroNumber %= 8;
@@ -33,10 +36,10 @@ int startGame()
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
 				sf::Vector2i globalPosition = sf::Mouse::getPosition(*window);
-				float x = globalPosition.x;
-				float y = globalPosition.y;
+				int x = globalPosition.x;
+				int y = globalPosition.y;
 
-				if ((x > 605 && x < (605 + 391)) && (y > 390 && y < 505))
+				if (Window.start->click(x, y))
 				{
 					delete window;
 

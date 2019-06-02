@@ -139,7 +139,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Gun.h" />
+    <ClInclude Include="Size.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="MainPage.hpp" />
     <ClInclude Include="mainWindow.h" />

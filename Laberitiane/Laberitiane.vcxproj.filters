@@ -68,6 +68,12 @@
     <ClInclude Include="MainPage.hpp">
       <Filter>Исполняемые файлы</Filter>
     </ClInclude>
+    <ClInclude Include="Size.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Player.txt" />

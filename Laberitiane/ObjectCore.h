@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-
+#include "Size.h"
 #include <iostream>
 
 enum direction
@@ -113,10 +113,10 @@ public:
 		if (active_)
 		{
 			
-			//window->draw(col_);
+		//	window->draw(col_);
 			window->draw(spr_);
-			//window->draw(horiCol_);
-			//window->draw(vertCol_);
+		//	window->draw(horiCol_);
+		//	window->draw(vertCol_);
 		}		
 	}
 

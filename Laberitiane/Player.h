@@ -99,7 +99,7 @@ public:
 		horiCol_.setRotation(degree);
 		horiCol_.setPosition(x_ + 3, y_ + h_ / 2 - 3.f);
 
-		vertCol_.setSize(sf::Vector2f(1.f, h_ - 0.f));
+		vertCol_.setSize(sf::Vector2f(1.f, h_ - 5.f));
 		vertCol_.setFillColor(sf::Color(0, 255, 0));
 		vertCol_.setRotation(degree);
 		vertCol_.setPosition(x_ + w_ / 2, y_);

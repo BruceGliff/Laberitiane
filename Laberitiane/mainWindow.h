@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Size.h"
+#include "Button.h"
 
 class MainWindow
 {
@@ -11,31 +13,20 @@ class MainWindow
 	sf::Texture backWall_;
 	sf::Sprite backWallSpr_;
 
-	float w_ = 1600.f;
-	float h_ = 900.f;
-
-
 	sf::Texture text_;
 	sf::Sprite textSpr_;
 
-	float wT_ = 634.f;
-	float hT_ = 192.f;
-	
-
-	sf::Texture start_;
-	sf::Sprite startSpr_;
-
-	float wS_ = 391.f;
-	float hS_ = 119.f;
+	Size<float> start_s;
 
 
 	sf::Texture skin_;
 	sf::Sprite skinSpr_;
 
-	float wSkin_ = 16.f;
-	float hSkin_ = 16.f;
+	Size<int> skin_s;
 
 public:
+	Button * start;
+
 	MainWindow()
 	{
 		
@@ -48,23 +39,26 @@ public:
 		textSpr_.setOrigin(367.f, 96.f);
 		textSpr_.setPosition(800.f, 120.f);
 
-		start_.loadFromFile("ref/images/StartBtn.png");
-		startSpr_.setTexture(start_);
-		startSpr_.setPosition(605.f, 391.f);
+		start_s = Size<float>(391.f, 119.f);
+		start = new Button(605.f, 358.f, start_s, "ref/images/StartBtn.png");
 		
+		skin_s = Size<int>(16, 16);
 		skin_.loadFromFile("ref/images/skins.png");
 		skinSpr_.setTexture(skin_);
-		skinSpr_.setTextureRect(sf::IntRect(0, int(hSkin_ * heroNumber * 3), int(wSkin_), int(hSkin_)));
+		skinSpr_.setTextureRect(sf::IntRect(0, skin_s.y() * heroNumber * 3, skin_s.x() , skin_s.y()));
 		skinSpr_.setPosition(224.f, 660.f);
 		skinSpr_.setScale(9.f, 9.f);
 		
 	}
-	~MainWindow() {};
+	~MainWindow() 
+	{
+		delete start;
+	};
 
 	void setHero(int number)
 	{
 		heroNumber = number;
-		skinSpr_.setTextureRect(sf::IntRect(0, int(hSkin_ * heroNumber * 3), int(wSkin_), int(hSkin_)));
+		skinSpr_.setTextureRect(sf::IntRect(0, skin_s.y() * heroNumber * 3, skin_s.x(), skin_s.y()));
 	}
 
 	void anim(float time)
@@ -86,7 +80,7 @@ public:
 		anim(time);
 		window->draw(backWallSpr_);
 		window->draw(textSpr_);
-		window->draw(startSpr_);
+		start->draw(window);
 		window->draw(skinSpr_);
 	}
 };

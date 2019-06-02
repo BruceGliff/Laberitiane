@@ -4,7 +4,7 @@
 int main()
 {
 	int hero = startGame();
-
-	RunLevel(hero);
+	if (hero >= 0)
+		RunLevel(hero);
 	return 0;
 }
