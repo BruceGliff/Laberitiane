@@ -52,7 +52,12 @@ public:
 		createCol();
 		dir_ = Down;
 		pistol_ = new Gun(vec, 7);
-		vec.push_back(this);
+	}
+
+	~Player()
+	{
+		//std::cout << "Player\n";
+		delete pistol_;
 	}
 
 	void move(int dir, float time)

@@ -11,7 +11,11 @@ public:
 	Bullet(bool alive = 0, float x = 0, float y = 0, bool active = false, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, int w = 4, int h = 2, const char * fileName = "ref/images/bullet.png", float speed = 0.7f) :
 		ObjectCore(alive, x, y, active, visible, dx, dy, animSpeed, frames, w, h, fileName),
 		speed_(speed)
+	{}
+
+	~Bullet() 
 	{
+		//std::cout << "Bullet\n";
 	}
 
 	void setView(sf::RenderWindow * window) {}

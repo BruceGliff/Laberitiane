@@ -99,7 +99,7 @@ void QSort<T>::print()
 {
 	if (this->left_)
 		this->left_->print();
-	std::cout << key_ << '\n';
+	//std::cout << key_ << '\n';
 	if (this->right_)
 		this->right_->print();
 }

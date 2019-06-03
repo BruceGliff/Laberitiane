@@ -11,6 +11,10 @@ public:
 		updateRect(WallNumber);
 		createCol();
 	}
+	~UWall()
+	{
+		//std::cout << "Uw\n";
+	}
 
 
 	void move(int dir, float time) {}
@@ -41,6 +45,11 @@ public:
 		updateRect(WallNumber);
 		createCol(degree);
 
+	}
+
+	~LWall()
+	{
+		//std::cout << "Lw\n";
 	}
 
 

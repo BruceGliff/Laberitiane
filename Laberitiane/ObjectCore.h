@@ -65,7 +65,7 @@ public:
 		spr_.setRotation(degree);
 	}
 
-	~ObjectCore() {}
+	virtual ~ObjectCore() {}
 
 	void setActive(bool f) { active_ = f; }
 	void setVisible(bool f) { visible_ = f; }
@@ -135,7 +135,7 @@ public:
 	{
 		if (col_.getGlobalBounds().intersects(second->col_.getGlobalBounds()))
 		{
-			//std::cout << "INTERSECT" << '\n';
+			////std::cout << "INTERSECT" << '\n';
 			return true;
 		}
 

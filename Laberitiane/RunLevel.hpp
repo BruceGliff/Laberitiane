@@ -26,7 +26,7 @@ int RunLevel(int heroNumber = 0)
 	ObjectCore * player = new Player(objects, true, 10, 20, heroNumber);
 	objects.push_back(player);
 
-	objects.push_back(new Player(objects, false, 10, 50, 1));
+//	objects.push_back(new Player(objects, false, 10, 50, 1));
 
 
 	lvl.insert(objects);
@@ -77,13 +77,19 @@ int RunLevel(int heroNumber = 0)
 
 		window->display();
 		
-		std::cout << 1 / dt << '\n';
+		////std::cout << 1 / dt << '\n';
 	}
+
+	objects.push_back(new Player(objects, false, 10, 50, 1));
+	objects.push_back(new Player(objects, false, 10, 50, 1));
+	objects.push_back(new Player(objects, false, 10, 50, 1));
+	objects.push_back(new Player(objects, false, 10, 50, 1));
+	objects.push_back(new Player(objects, false, 10, 50, 1));
 
 	for (auto x : objects)
 	{
-		//delete x;
+		delete x;
 	}
-
+	system("pause");
 	return 0;
 }

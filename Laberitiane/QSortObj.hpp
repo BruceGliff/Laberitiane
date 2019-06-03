@@ -127,7 +127,7 @@ void QSort<ObjectCore>::print()
 {
 	if (this->left_)
 		this->left_->print();
-	std::cout << key_->getY() << ' ' << key_->getH() << '\n';
+	//std::cout << key_->getY() << ' ' << key_->getH() << '\n';
 	if (this->right_)
 		this->right_->print();
 }
