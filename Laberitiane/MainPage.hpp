@@ -41,9 +41,13 @@ int startGame()
 
 				if (Window.start->click(x, y))
 				{
-					delete window;
-
+					window->close();
 					return heroNumber;
+				}
+				if (Window.exit->click(x, y))
+				{
+					window->close();
+					return -1;
 				}
 			}
 
