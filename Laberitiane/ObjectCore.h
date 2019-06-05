@@ -112,7 +112,6 @@ public:
 	{
 		if (active_)
 		{
-			
 			//window->draw(col_);
 			window->draw(spr_);
 			//window->draw(horiCol_);
@@ -135,7 +134,6 @@ public:
 	{
 		if (col_.getGlobalBounds().intersects(second->col_.getGlobalBounds()))
 		{
-			////std::cout << "INTERSECT" << '\n';
 			return true;
 		}
 

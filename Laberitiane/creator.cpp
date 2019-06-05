@@ -121,10 +121,10 @@ maze::maze(int vert, int horiz) :
 
 		bool was_opened_cell = false;
 
-		for (int j = 0; j < horiz; j++)
+		//for (int j = 0; j < horiz; j++)
 			//std::cout << cell_[i][j].cset() << ' ';
 
-		printf("\n");
+		//printf("\n");
 
 		for (int j = 0; j < horiz - 1; j++)
 		{
@@ -183,7 +183,7 @@ int get_random()
 {
 	static int a = 0;
 
-	a += time(NULL);
+	a += int(time(NULL));
 
 	a -= RANDOM_NUMBER;
 
@@ -405,7 +405,7 @@ maze:: ~maze()
 
 	delete[] cell_;
 
-	printf("DESTRUCTOR!!!\n");
+	//printf("DESTRUCTOR!!!\n");
 
 }
 int* maze::convert()
@@ -443,7 +443,7 @@ int* maze::convert()
 	for (int j = 0; j < horizontal_; j++)
 		res[(vertical_) * (horizontal_ + 1) + j] += RIGHT;
 
-	printf("%d\n", k);
+	//printf("%d\n", k);
 	return res;
 }
 

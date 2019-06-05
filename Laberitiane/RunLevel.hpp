@@ -5,29 +5,40 @@
 #include <vector>
 #include <iostream>
 
+#define LOSE 0xFF
+#define WIN  0x0F
+
 typedef unsigned int uInt;
+
+int Exit(std::vector<ObjectCore *> & objects, sf::RenderWindow * window, int exitID = 0)
+{
+	for (auto x : objects)
+	{
+		delete x;
+	}
+	window->close();
+
+	return exitID;
+}
 
 int RunLevel(int heroNumber = 0)
 {
 	setlocale(LC_ALL, "Russian");
-
-	int winX = 1600;
-	int winY = 900;
+	
+	Size<int> windowS(1600, 900);
 	float dt = 0;
 
-	sf::RenderWindow * window = new sf::RenderWindow(sf::VideoMode(winX, winY), "Laberitianin");
+	sf::RenderWindow * window = new sf::RenderWindow(sf::VideoMode(windowS.x(), windowS.y()), "Laberitianin");
 
 	float globTime = 0;
 
-	Level lvl(5);
+	Level lvl(6);
 	
 	std::vector<ObjectCore *> objects;
 
-	ObjectCore * player = new Player(objects, true, 10, 20, heroNumber);
+	ObjectCore * player = new Player(objects, true, 10, 10, heroNumber);
 	objects.push_back(player);
-
-//	objects.push_back(new Player(objects, false, 10, 50, 1));
-
+	objects.push_back(new Player(objects, false, 40, 10, 2));
 
 	lvl.insert(objects);
 	
@@ -46,18 +57,27 @@ int RunLevel(int heroNumber = 0)
 		while (window->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
-				window->close();
+				return Exit(objects, window);
 		}
 
 		player->evnt(time, globTime, window);
 
-
+		bool botsAliveF = false;
 		for (uInt i = 0; i < objects.size(); i++)
 		{
-				for (uInt j = i + 1; j < objects.size(); j++)
-					if (objects[i]->active() && objects[j]->active())
-						objects[i]->interSection(objects[j]);
+			if (objects[i]->alive() && !objects[i]->active())
+				return Exit(objects, window, LOSE);
+
+			Player * bot = dynamic_cast<Player *>(objects[i]);
+			if (bot && objects[i]->active() && !objects[i]->alive())
+				botsAliveF = true;
+
+			for (uInt j = i + 1; j < objects.size(); j++)
+				if (objects[i]->active() && objects[j]->active())
+					objects[i]->interSection(objects[j]);
 		}
+		if (!botsAliveF) 
+			return Exit(objects, window, WIN);
 
 		player->setView(window);
 		
@@ -76,20 +96,9 @@ int RunLevel(int heroNumber = 0)
 		q->free();
 
 		window->display();
-		
-		////std::cout << 1 / dt << '\n';
+
 	}
 
-	objects.push_back(new Player(objects, false, 10, 50, 1));
-	objects.push_back(new Player(objects, false, 10, 50, 1));
-	objects.push_back(new Player(objects, false, 10, 50, 1));
-	objects.push_back(new Player(objects, false, 10, 50, 1));
-	objects.push_back(new Player(objects, false, 10, 50, 1));
-
-	for (auto x : objects)
-	{
-		delete x;
-	}
-	system("pause");
-	return 0;
+	
+	return Exit(objects, window);
 }

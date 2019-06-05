@@ -27,6 +27,9 @@
     <ClCompile Include="creator.cpp">
       <Filter>Исполняемые файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Mult.cpp">
+      <Filter>Исполняемые файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">

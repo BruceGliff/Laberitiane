@@ -38,9 +38,7 @@ public:
 		}
 	}
 	~Map()
-	{
-		//std::cout << "MAp\n";
-	}
+	{}
 
 	void draw(sf::RenderWindow * window) 
 	{

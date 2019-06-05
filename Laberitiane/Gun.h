@@ -55,9 +55,7 @@ public:
 	}
 
 	~Gun()
-	{
-		//std::cout << "GPUN\n";
-	}
+	{}
 
 };
 

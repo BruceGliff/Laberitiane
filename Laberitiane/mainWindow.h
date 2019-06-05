@@ -19,6 +19,7 @@ class MainWindow
 	Size<float> start_s;
 	Size<float> exit_s;
 
+	Size<float> video_s;
 
 	sf::Texture skin_;
 	sf::Sprite skinSpr_;
@@ -28,6 +29,7 @@ class MainWindow
 public:
 	Button * start;
 	Button * exit;
+	Button * video;
 
 	MainWindow()
 	{
@@ -46,6 +48,9 @@ public:
 
 		exit_s = Size<float>(1172.f, 504.f);
 		exit = new Button(1400.f, 800.f, exit_s, "ref/images/exitBtn.png", 0.1f);
+
+		video_s = Size<float>(1172.f, 504.f);
+		video = new Button(1400.f, 400.f, video_s, "ref/images/exitBtn.png", 0.1f);
 		
 		skin_s = Size<int>(16, 16);
 		skin_.loadFromFile("ref/images/skins.png");
@@ -87,6 +92,7 @@ public:
 		window->draw(textSpr_);
 		start->draw(window);
 		exit->draw(window);
+		video->draw(window);
 		window->draw(skinSpr_);
 	}
 };

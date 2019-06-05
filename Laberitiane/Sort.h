@@ -51,7 +51,6 @@ public:
 	{
 		if (left_ != nullptr)
 			left_->print();
-		//std::cout << key_ << '\n';
 		if (right_ != nullptr)
 			right_->print();
 	}
@@ -99,7 +98,6 @@ public:
 	{
 		if (left_ != nullptr)
 			left_->print();
-		//std::cout << key_->getY() << '\n';
 		if (right_ != nullptr)
 			right_->print();
 	}

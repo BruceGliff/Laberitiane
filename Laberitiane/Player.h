@@ -56,7 +56,6 @@ public:
 
 	~Player()
 	{
-		//std::cout << "Player\n";
 		delete pistol_;
 	}
 

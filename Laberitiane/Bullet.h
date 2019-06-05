@@ -14,9 +14,7 @@ public:
 	{}
 
 	~Bullet() 
-	{
-		//std::cout << "Bullet\n";
-	}
+	{}
 
 	void setView(sf::RenderWindow * window) {}
 	sf::View * getView() { return nullptr; }

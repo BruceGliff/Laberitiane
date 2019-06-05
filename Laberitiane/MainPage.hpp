@@ -1,5 +1,6 @@
 #include "mainWindow.h"
-
+#define MULT 0x5F
+#define EXIT -1
 int startGame()
 {
 	Size<int> window_s(1600, 900);
@@ -47,7 +48,12 @@ int startGame()
 				if (Window.exit->click(x, y))
 				{
 					window->close();
-					return -1;
+					return EXIT;
+				}
+				if (Window.video->click(x, y))
+				{
+					window->close();
+					return MULT;
 				}
 			}
 

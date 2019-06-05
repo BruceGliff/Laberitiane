@@ -12,9 +12,7 @@ public:
 		createCol();
 	}
 	~UWall()
-	{
-		//std::cout << "Uw\n";
-	}
+	{}
 
 
 	void move(int dir, float time) {}
@@ -48,9 +46,7 @@ public:
 	}
 
 	~LWall()
-	{
-		//std::cout << "Lw\n";
-	}
+	{}
 
 
 	void move(int dir, float time) {}
@@ -59,7 +55,7 @@ public:
 
 	virtual void createCol(float degree = 0)
 	{
-		col_.setSize(sf::Vector2f(w_, h_ - 27.f));
+		col_.setSize(sf::Vector2f(w_ - 0.f, h_ - 27.f));
 		col_.setFillColor(sf::Color(255, 0, 0));
 		col_.setPosition(x_, y_ + 27.f);
 
