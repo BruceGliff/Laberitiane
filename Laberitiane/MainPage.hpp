@@ -1,6 +1,7 @@
 #include "mainWindow.h"
 #define MULT 0x5F
 #define EXIT -1
+
 int startGame()
 {
 	Size<int> window_s(1600, 900);
@@ -23,6 +24,7 @@ int startGame()
 			if (event.type == sf::Event::Closed)
 			{
 				window->close();
+				delete window;
 				return -1;
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
@@ -43,16 +45,19 @@ int startGame()
 				if (Window.start->click(x, y))
 				{
 					window->close();
+					delete window;
 					return heroNumber;
 				}
 				if (Window.exit->click(x, y))
 				{
 					window->close();
+					delete window;
 					return EXIT;
 				}
 				if (Window.video->click(x, y))
 				{
 					window->close();
+					delete window;
 					return MULT;
 				}
 			}
@@ -63,5 +68,6 @@ int startGame()
 		window->display();
 	}
 
+	delete window;
 	return 0;
 }

@@ -17,6 +17,7 @@ int Exit(std::vector<ObjectCore *> & objects, sf::RenderWindow * window, int exi
 		delete x;
 	}
 	window->close();
+	delete window;
 
 	return exitID;
 }

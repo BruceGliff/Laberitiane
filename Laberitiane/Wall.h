@@ -5,7 +5,7 @@
 class UWall : public ObjectCore
 {
 public:
-	UWall(float x = 0, float y = 0, int WallNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, int w = 34, int h = 27, const char * fileName = "ref/images/uwall1.png") :
+	UWall(float x = 0, float y = 0, int WallNumber = 0, bool active = true, bool visible = true, float dx = 0, float dy = 0, float animSpeed = 0, int frames = 1, int w = 34, int h = 27, const char * fileName = "ref/images/uwall.png") :
 		ObjectCore(false, x, y, active, visible, dx, dy, animSpeed, frames, w, h, fileName)
 	{
 		updateRect(WallNumber);

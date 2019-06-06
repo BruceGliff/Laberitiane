@@ -1,27 +1,36 @@
 #include "RunLevel.hpp"
 #include "MainPage.hpp"
 #include "Mult.cpp"
+#include  "Win_Lose.cpp"
 
 int main()
 {
 	int hero = 0;
-	while ((hero = startGame()) == MULT)
+	
+	while (1)
 	{
-		RunVideo();
+		hero = startGame();
+		if (hero == EXIT)
+			return 0;
+		if (hero == MULT)
+		{
+			RunVideo();
+			continue;
+		}
+	
+		int exitID = 0;
+		if (hero >= 0)
+			exitID = RunLevel(hero);
+		switch (exitID)
+		{
+		case WIN:
+			Win();
+			break;
+		case LOSE:
+			std::cout << "LOSE";
+			break;
+		}
 	}
-	int exitID = 0;
-	if (hero >= 0)
-		exitID = RunLevel(hero);
-	switch (exitID)
-	{
-	case WIN:
-		std::cout << "WIN";
-		break;
-	case LOSE:
-		std::cout << "LOSE";
-		break;
-	}
-	//system("pause");
 
 	return 0;
 }

@@ -33,6 +33,9 @@
     <ClCompile Include="Mult.cpp">
       <Filter>Исполняемые файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Win_Lose.cpp">
+      <Filter>Исполняемые файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -645,6 +648,9 @@
     </Image>
     <Image Include="ref\images\ANIM\p (169).png">
       <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\cinematic.png">
+      <Filter>ref\images</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

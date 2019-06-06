@@ -47,7 +47,7 @@ int Video::play()
 	while (window->isOpen())
 	{
 		shape = "p ().png\0";
-		path = "ref/images/ANIM2/";
+		path = "ref/images/ANIM/";
 
 		//////////////////////////////
 		float time = float(clock.getElapsedTime().asMicroseconds());
@@ -65,7 +65,7 @@ int Video::play()
 				if (exit->click(x, y))
 				{
 					window->close();
-						return 0;
+					return 0;
 				}
 			}
 			if (event.type == sf::Event::Closed)
@@ -105,13 +105,13 @@ int Video::play()
 			frame += time / animSpeed_;
 		}
 	}
-
 	return 0;
 }
 
 Video::~Video()
 {
 	delete exit;
+	delete window;
 }
 
 

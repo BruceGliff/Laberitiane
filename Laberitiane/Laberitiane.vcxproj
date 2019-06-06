@@ -144,6 +144,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Win_Lose.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
@@ -338,6 +342,7 @@
     <Image Include="ref\images\ANIM\p (99).png" />
     <Image Include="ref\images\border.png" />
     <Image Include="ref\images\bullet.png" />
+    <Image Include="ref\images\cinematic.png" />
     <Image Include="ref\images\exitBtn.png" />
     <Image Include="ref\images\fire.png" />
     <Image Include="ref\images\flour.png" />
