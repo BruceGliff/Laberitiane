@@ -36,7 +36,7 @@ int Video::play()
 	sf::Clock clock;
 
 	std::string shape = "p ().png\0";
-	std::string path = "ref/images/ANIM2/";
+	std::string path = "ref/images/ANIM/";
 	std::string tmp;
 	
 	sf::Sprite spr;
