@@ -9,15 +9,18 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Файлы ресурсов">
+    <Filter Include="Исполняемые файлы">
+      <UniqueIdentifier>{186d50ec-4e4f-4ce0-bedd-859254fe55ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ref">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Файлы ресурсов\images">
+    <Filter Include="ref\images">
       <UniqueIdentifier>{0322a140-be05-4e0b-b48c-a126b602b3f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исполняемые файлы">
-      <UniqueIdentifier>{186d50ec-4e4f-4ce0-bedd-859254fe55ec}</UniqueIdentifier>
+    <Filter Include="ref\images\ANIM">
+      <UniqueIdentifier>{dfad941c-f56e-417d-bb93-8b640cbc86d9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -82,36 +85,571 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Player.txt" />
-    <Text Include="QSort.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="ref\images\skins.png">
-      <Filter>Файлы ресурсов\images</Filter>
-    </Image>
-    <Image Include="ref\images\flour.png">
-      <Filter>Файлы ресурсов\images</Filter>
-    </Image>
-    <Image Include="ref\images\uwall.png">
-      <Filter>Файлы ресурсов\images</Filter>
-    </Image>
-    <Image Include="ref\images\lwall.png">
-      <Filter>Файлы ресурсов\images</Filter>
+    <Image Include="ref\images\border.png">
+      <Filter>ref\images</Filter>
     </Image>
     <Image Include="ref\images\bullet.png">
-      <Filter>Файлы ресурсов\images</Filter>
+      <Filter>ref\images</Filter>
+    </Image>
+    <Image Include="ref\images\exitBtn.png">
+      <Filter>ref\images</Filter>
     </Image>
     <Image Include="ref\images\fire.png">
-      <Filter>Файлы ресурсов\images</Filter>
+      <Filter>ref\images</Filter>
+    </Image>
+    <Image Include="ref\images\flour.png">
+      <Filter>ref\images</Filter>
     </Image>
     <Image Include="ref\images\Laberetiane.png">
-      <Filter>Файлы ресурсов\images</Filter>
+      <Filter>ref\images</Filter>
+    </Image>
+    <Image Include="ref\images\lwall.png">
+      <Filter>ref\images</Filter>
+    </Image>
+    <Image Include="ref\images\lwall_v1.png">
+      <Filter>ref\images</Filter>
     </Image>
     <Image Include="ref\images\mainTheme.png">
-      <Filter>Файлы ресурсов\images</Filter>
+      <Filter>ref\images</Filter>
+    </Image>
+    <Image Include="ref\images\skins.png">
+      <Filter>ref\images</Filter>
+    </Image>
+    <Image Include="ref\images\skins1.png">
+      <Filter>ref\images</Filter>
+    </Image>
+    <Image Include="ref\images\skins2.png">
+      <Filter>ref\images</Filter>
     </Image>
     <Image Include="ref\images\StartBtn.png">
-      <Filter>Файлы ресурсов\images</Filter>
+      <Filter>ref\images</Filter>
     </Image>
+    <Image Include="ref\images\startBtn_v2.png">
+      <Filter>ref\images</Filter>
+    </Image>
+    <Image Include="ref\images\startBtn_v3.png">
+      <Filter>ref\images</Filter>
+    </Image>
+    <Image Include="ref\images\uwall.png">
+      <Filter>ref\images</Filter>
+    </Image>
+    <Image Include="ref\images\uwall_v1.png">
+      <Filter>ref\images</Filter>
+    </Image>
+    <Image Include="ref\images\uwall1.png">
+      <Filter>ref\images</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (1).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (2).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (3).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (4).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (5).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (6).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (7).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (8).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (9).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (10).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (11).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (12).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (13).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (14).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (15).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (16).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (17).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (18).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (19).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (20).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (21).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (22).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (23).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (24).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (25).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (26).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (27).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (28).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (29).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (30).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (31).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (32).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (33).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (34).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (35).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (36).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (37).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (38).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (39).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (40).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (41).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (42).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (43).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (44).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (45).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (46).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (47).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (48).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (49).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (50).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (51).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (52).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (53).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (54).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (55).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (56).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (57).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (58).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (59).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (60).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (61).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (62).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (63).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (64).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (65).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (66).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (67).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (68).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (69).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (70).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (71).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (72).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (73).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (74).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (75).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (76).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (77).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (78).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (79).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (80).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (81).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (82).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (83).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (84).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (85).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (86).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (87).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (88).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (89).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (90).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (91).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (92).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (93).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (94).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (95).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (96).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (97).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (98).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (99).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (100).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (101).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (102).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (103).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (104).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (105).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (106).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (107).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (108).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (109).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (110).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (111).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (112).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (113).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (114).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (115).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (116).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (117).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (118).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (119).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (120).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (121).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (122).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (123).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (124).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (125).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (126).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (127).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (128).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (129).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (130).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (131).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (132).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (133).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (134).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (135).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (136).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (137).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (138).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (139).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (140).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (141).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (142).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (143).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (144).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (145).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (146).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (147).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (148).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (149).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (150).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (151).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (152).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (153).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (154).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (155).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (156).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (157).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (158).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (159).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (160).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (161).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (162).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (163).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (164).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (165).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (166).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (167).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (168).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+    <Image Include="ref\images\ANIM\p (169).png">
+      <Filter>ref\images\ANIM</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ref\images\start_p.psd">
+      <Filter>ref\images</Filter>
+    </None>
   </ItemGroup>
 </Project>
