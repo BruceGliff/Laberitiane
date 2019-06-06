@@ -347,6 +347,7 @@
     <Image Include="ref\images\fire.png" />
     <Image Include="ref\images\flour.png" />
     <Image Include="ref\images\Laberetiane.png" />
+    <Image Include="ref\images\LOSE.png" />
     <Image Include="ref\images\lwall.png" />
     <Image Include="ref\images\lwall_v1.png" />
     <Image Include="ref\images\mainTheme.png" />
@@ -359,6 +360,7 @@
     <Image Include="ref\images\uwall.png" />
     <Image Include="ref\images\uwall1.png" />
     <Image Include="ref\images\uwall_v1.png" />
+    <Image Include="ref\images\WIN.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ref\images\start_p.psd" />

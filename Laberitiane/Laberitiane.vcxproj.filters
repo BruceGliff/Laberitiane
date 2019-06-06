@@ -652,6 +652,12 @@
     <Image Include="ref\images\cinematic.png">
       <Filter>ref\images</Filter>
     </Image>
+    <Image Include="ref\images\LOSE.png">
+      <Filter>ref\images</Filter>
+    </Image>
+    <Image Include="ref\images\WIN.png">
+      <Filter>ref\images</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="ref\images\start_p.psd">
