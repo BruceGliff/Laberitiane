@@ -1,7 +1,29 @@
 #include <iostream>
 #include <time.h>
+#include <assert.h>
+
+#define SUCCESS 135
+#define DEAD_END 134
 
 enum
+{
+	NOTHING = 0,
+	RIGHT = 1,
+	DOWN = 2,
+	BOTH = 3
+
+};
+
+enum step_direction
+{
+	S_END = 0,
+	S_UP = 1,
+	S_DOWN = 2,
+	S_LEFT = 3,
+	S_RIGHT = 4
+};
+
+enum 
 {
 	ERROR = 134,
 
@@ -14,41 +36,58 @@ enum
 
 };
 
+
+struct coord
+{
+	int x, y;
+};
 //FILE* loggg;
 
 class cell
 {
 	//private:
-	public:
-		int north_, west_, east_, south_; // РјРЅРѕРіРѕ РїР°РјСЏС‚Рё
-		int set_;
+public:
+	int north_, west_, east_, south_; // много памяти
+	int set_;
 	//public:
 		//int create_wall(char letter);
-		int delete_wall(char letter);
-		bool check_wall(char letter); 
-		int& cset();// РІС‚РѕСЂР°СЏ С„СѓРЅРєС†РёСЏ СЃ Р°СЂРіСѓРјРµС‚РѕРј РёР·РјРµРЅРµРЅРёСЏ
+	int delete_wall(char letter);
+	bool check_wall(char letter);
+	int& cset();// вторая функция с аргуметом изменения
 };
 
-class maze
+class Maze
 {
 	//private:
-	public:
-		cell** cell_;
-		int vertical_, horizontal_;
+public:
+	cell** cell_;
+	int vertical_, horizontal_;
 	//public:
-		maze(int vert, int horiz);
-		~maze();
+	Maze(int vert, int horiz);
+	~Maze();
 
-		int change_array_before_start(cell** array, int number, int range);
+	int change_array_before_start(cell** array, int number, int range);
 
-		int last_line_processing (cell* array, int range);
+	int last_line_processing(cell* array, int range);
 
-		int print_maze();
+	int print_Maze();
 
 
-		int* convert();
+	int* convert();
 
-		int test();
+	int test();
+
+	int find_path(int* arr, int x1, int y1, int x2, int y2, int step, coord* track, int size);
+
+	int vertical()
+	{
+		return vertical_;
+	}
+
+	int horizontal()
+	{
+		return horizontal_;
+	}
 
 };
 
@@ -56,21 +95,21 @@ class maze
 
 int get_random();
 
-maze:: maze(int vert, int horiz):
-vertical_(vert),
-horizontal_(horiz)
+Maze::Maze(int vert, int horiz) :
+	vertical_(vert),
+	horizontal_(horiz)
 
 {
-	cell_ = new(std:: nothrow) cell* [vert];
+	cell_ = new(std::nothrow) cell*[vert];
 
 	if (cell_ == nullptr)
-		printf("Not enough memmory\nProblem in maze constructor\n");
+		printf("Not enough memmory\nProblem in Maze constructor\n");
 
 	for (int i = 0; i < vert; i++)
 	{
-		cell_[i] = new(std:: nothrow) cell[horiz];
+		cell_[i] = new(std::nothrow) cell[horiz];
 		if (cell_[i] == nullptr)
-			printf("Not enough memmory\nProblem in maze constructor\n");
+			printf("Not enough memmory\nProblem in Maze constructor\n");
 
 		for (int j = 0; j < horiz; j++)
 		{
@@ -92,10 +131,10 @@ horizontal_(horiz)
 
 	for (int i = 0; i < vert; i++)
 	{
-		cell_[i][0].west_ = WALL; // optimize (Р»РёС€РЅРµРµ РґРµР№СЃС‚РІРёРµ Рё С‚Р°Рє РїСЂРѕРёР·РѕР№РґРµС‚ РёР·-Р·Р° РєРѕРїРёСЂРѕРІР°РЅРёСЏ)
+		cell_[i][0].west_ = WALL; // optimize (лишнее действие и так произойдет из-за копирования)
 		cell_[i][horiz - 1].east_ = WALL;
 
-	
+
 
 		for (int j = 0; j < horiz - 1; j++)
 		{
@@ -107,7 +146,7 @@ horizontal_(horiz)
 				}
 
 				else
-					cell_[i][j + 1].cset() = cell_[i][j].cset(); 
+					cell_[i][j + 1].cset() = cell_[i][j].cset();
 
 			else
 			{
@@ -121,10 +160,10 @@ horizontal_(horiz)
 
 		bool was_opened_cell = false;
 
-		for (int j = 0; j < horiz; j++)
-			std:: cout << cell_[i][j].cset() << ' ';
+		//for (int j = 0; j < horiz; j++)
+			//std::cout << cell_[i][j].cset() << ' ';
 
-		printf("\n");
+		//printf("\n");
 
 		for (int j = 0; j < horiz - 1; j++)
 		{
@@ -155,7 +194,7 @@ horizontal_(horiz)
 
 				if (i + 1 < vertical_)
 					cell_[i + 1][horiz - 1].north_ = WALL;
-			}			
+			}
 
 
 		if (i + 1 < vert)
@@ -183,21 +222,23 @@ int get_random()
 {
 	static int a = 0;
 
-	a += time(NULL);
+	a += int(time(NULL));
 
 	a -= RANDOM_NUMBER;
 
 	a %= 124;
 
+	//a = 0;
+
 	return a;
 }
 
-int maze:: change_array_before_start(cell** array, int number, int range)
+int Maze::change_array_before_start(cell** array, int number, int range)
 {
 	if (array == nullptr)
 		return ERROR;
 
-	int* array_of_set_number = (int*) calloc (range, sizeof(int));
+	int* array_of_set_number = (int*)calloc(range, sizeof(int));
 
 
 	for (int i = 0; i < range; i++)
@@ -241,7 +282,7 @@ int maze:: change_array_before_start(cell** array, int number, int range)
 }
 
 
-int maze:: last_line_processing(cell* array, int range)
+int Maze::last_line_processing(cell* array, int range)
 {
 	int prev = array[0].cset();
 
@@ -292,74 +333,73 @@ int maze:: last_line_processing(cell* array, int range)
 		default:
 			printf("Wrong letter in create_wall\n");
 	}
-
 	return 0;
 }*/
 
 
 
-int cell:: delete_wall(char letter)
+int cell::delete_wall(char letter)
 {
 	switch (letter)
 	{
-		case 's':
-			south_ = NO_WALL;
-			break;
-		case 'n':
-			north_ = NO_WALL;
-			break;
-		case 'e':
-			east_ = NO_WALL;
-			break;
-		case 'w':
-			west_ = NO_WALL;
-			break;
-		case 'a':
-			south_ = NO_WALL;
-			north_ = NO_WALL;
-			east_ = NO_WALL;
-			west_ = NO_WALL;
-			break;
-		default:
-			printf("Wrong letter in delete_wall\n");
+	case 's':
+		south_ = NO_WALL;
+		break;
+	case 'n':
+		north_ = NO_WALL;
+		break;
+	case 'e':
+		east_ = NO_WALL;
+		break;
+	case 'w':
+		west_ = NO_WALL;
+		break;
+	case 'a':
+		south_ = NO_WALL;
+		north_ = NO_WALL;
+		east_ = NO_WALL;
+		west_ = NO_WALL;
+		break;
+	default:
+		printf("Wrong letter in delete_wall\n");
 	}
 
 	return 0;
 }
-bool cell:: check_wall(char letter)
+bool cell::check_wall(char letter)
 {
 	switch (letter)
 	{
-		case 's':
-			if (south_ == WALL)
-				return true;
-			break;
-		case 'n':
-			if (north_ == WALL)
-				return true;
-			break;
-		case 'e':
-			if (east_ == WALL)
-				return true;
-			break;
-		case 'w':
-			if (west_ == WALL)
-				return true;
-			break;
-		default:
-			printf("Wrong letter in check_wall\n");
+	case 's':
+		if (south_ == WALL)
+			return true;
+		break;
+	case 'n':
+		if (north_ == WALL)
+			return true;
+		break;
+	case 'e':
+		if (east_ == WALL)
+			return true;
+		break;
+	case 'w':
+		if (west_ == WALL)
+			return true;
+		break;
+	default:
+		printf("Wrong letter in check_wall\n");
 	}
 
 	return false;
-} 
+}
 
 
-int& cell:: cset()
+int& cell::cset()
 {
 	return set_;
 }
 
-int maze:: print_maze()
+int Maze::print_Maze()
 {
 
 	for (int i = 0; i < horizontal_; i++)
@@ -371,12 +411,12 @@ int maze:: print_maze()
 	{
 		printf("|");
 
-		for (int j = 0; j < horizontal_; j++ )
+		for (int j = 0; j < horizontal_; j++)
 		{
 			if (cell_[i][j].south_ == WALL)
 			{
 				if (i < vertical_ - 1)
-					if(cell_[i + 1][j].north_ != WALL)
+					if (cell_[i + 1][j].north_ != WALL)
 						printf("!!");
 					else
 						printf("__");
@@ -399,19 +439,19 @@ int maze:: print_maze()
 }
 
 
-maze:: ~maze()
+Maze:: ~Maze()
 {
 	for (int i = 0; i < vertical_; i++)
 		delete[] cell_[i];
 
 	delete[] cell_;
 
-	printf("DESTRUCTOR!!!\n");
+	//printf("DESTRUCTOR!!!\n");
 
 }
-int* maze:: convert ()
+int* Maze::convert()
 {
-	int* res = new int [(vertical_ + 1) * (horizontal_ + 1)];
+	int* res = new int[(vertical_ + 1) * (horizontal_ + 1)];
 	for (int i = 0; i < (vertical_ + 1) * (horizontal_ + 1); i++)
 		res[i] = 0;
 
@@ -425,7 +465,7 @@ int* maze:: convert ()
 			{
 
 				if (i > 0)
-					if(cell_[i - 1][j].south_ != WALL)
+					if (cell_[i - 1][j].south_ != WALL)
 						printf("! ");
 
 
@@ -444,14 +484,14 @@ int* maze:: convert ()
 	for (int j = 0; j < horizontal_; j++)
 		res[(vertical_) * (horizontal_ + 1) + j] += RIGHT;
 
-	printf("%d\n", k);
+	//printf("%d\n", k);
 	return res;
 }
 
-int maze:: test ()
+int Maze::test()
 {
 	for (int i = 0; i < vertical_; i++)
-		for(int j = 0; j < horizontal_; j++)
+		for (int j = 0; j < horizontal_; j++)
 		{
 			cell_[i][j].north_ = WALL;
 			cell_[i][j].west_ = WALL;
@@ -462,31 +502,203 @@ int maze:: test ()
 }
 
 
+bool checkTrack(coord* track, int size, int x, int y)
+{
+	for(int i = 0; i < size; i++)
+	{
+		if(x == track[i].x && y == track[i].y)
+			return false;
+	}
+
+	return true;
+}
+
+int Maze:: find_path(int* arr, int x1, int y1, int x2, int y2, int step, coord* track, int size)
+{
+	//printf("**");
+	assert(arr);
+	if ((horizontal_ * vertical_ + 5) / 5  - step <= abs(x1 - x2) + abs(y1 - y2))
+	{
+		*arr = S_END;
+		//printf("****\n");
+		return 0;
+	}
+
+	if (x1 == x2 && y1 == y2)
+	{
+		*arr = S_END;
+		//printf("**%d**\n", step);
+		return step;
+	}
+
+	int path1 = 0;
+	int path2 = 0;
+	int path3 = 0;
+	int path4 = 0;
+
+	if (cell_[x1][y1].north_ == NO_WALL && checkTrack(track, step, x1 - 1, y1))
+	{
+		*arr = S_UP;
+		track[step].x = x1;
+		track[step].y = y1; 
+		path1 = find_path(arr + 1, x1 - 1, y1, x2, y2, step + 1, track, size);
+		if (path1 <= (abs(x1 - x2) + abs(y1 - y2)) * 3 / 2 && path1 != 0)
+			return path1;
+	}
+
+	if (cell_[x1][y1].east_ == NO_WALL && checkTrack(track, step, x1, y1 + 1))
+	{
+		*arr = S_RIGHT;
+		track[step].x = x1;
+		track[step].y = y1;
+		path2 = find_path(arr + 1, x1, y1 + 1, x2, y2, step + 1, track, size);
+		if (path2 <= (abs(x1 - x2) + abs(y1 - y2)) * 3 / 2 && path2 != 0)
+			return path2;
+	}
+
+	if (cell_[x1][y1].south_ == NO_WALL && checkTrack(track, step, x1 + 1, y1))
+	{
+		*arr = S_DOWN;
+		track[step].x = x1;
+		track[step].y = y1;
+		path3 = find_path(arr + 1, x1 + 1, y1, x2, y2, step + 1, track, size);
+		if (path3 <= (abs(x1 - x2) + abs(y1 - y2)) * 3 / 2 && path3 != 0)
+			return path3;
+	}
+
+	if (cell_[x1][y1].west_ == NO_WALL && checkTrack(track, step, x1, y1 - 1))
+	{
+		*arr = S_LEFT;
+		track[step].x = x1;
+		track[step].y = y1;
+		path4 = find_path(arr + 1, x1, y1 - 1, x2, y2, step + 1, track, size);
+		if (path4 <= (abs(x1 - x2) + abs(y1 - y2)) * 3 / 2 && path4 != 0)
+			return path4;
+	}
+
+
+	if (path1 == 0)
+		path1 = horizontal_ * vertical_ + 5;
+	if (path2 == 0)
+		path2 = horizontal_ * vertical_ + 5;
+	if (path3 == 0)
+		path3 = horizontal_ * vertical_ + 5;
+	if (path4 == 0)
+		path4 = horizontal_ * vertical_ + 5;
+
+	int deadEndNumber = horizontal_ * vertical_ + 5;
+
+	if (path1 != deadEndNumber && (path1 <= path2) && (path1 <= path3) && (path1 <= path4))
+	{
+		*arr = S_UP;
+		return find_path(arr + 1, x1 - 1, y1, x2, y2, step + 1, track, size);
+	}
+	else if (path2 != deadEndNumber && (path2 <= path1) && (path2 <= path3) && (path2 <= path4))
+	{
+		*arr = S_RIGHT;
+		return find_path(arr + 1, x1, y1 + 1, x2, y2, step + 1, track, size);
+	}
+	else if (path3 != deadEndNumber && (path3 <= path1) && (path3 <= path2) && (path3 <= path4))
+	{
+		*arr = S_DOWN;
+		return find_path(arr + 1, x1 + 1, y1, x2, y2, step + 1, track, size);
+	}
+	else if (path4 != deadEndNumber && (path4 <= path1) && (path4 <= path2) && (path4 <= path3))
+	{
+		*arr = S_LEFT;
+		return find_path(arr + 1, x1, y1 - 1, x2, y2, step + 1, track, size);
+	}
+
+	return 0;
+}
+
+
 
 /*int main()
 {
-	loggg = fopen("loggg.txt", "w");
-
-	fclose(loggg);
-
-
-
-	loggg = fopen("loggg.txt", "a");
-
-	fprintf(loggg, "begin\n");
-
-	fclose(loggg);
-
-
-
 	//printf("%d\n", time(NULL));
+	Maze a(10, 10);
 
-	maze a(5, 5);
-
-	
-	a.print_maze();
-
+	//a.test();
+	a.print_Maze();
+	int* arr = (int*) calloc(a.horizontal() * a.vertical() + 10, sizeof(int));
 
 
+	coord *track = (coord*) calloc(a.horizontal() * a.vertical() + 10, sizeof(coord));
+	for(int i = 0; i < a.horizontal() * a.vertical() + 10; ++i)
+	{
+		track[i].x = -1;
+		track[i].y = -1;
+	}
+	int i = 0;
+	int res = a.find_path(arr, 0, 0, 1, 1, 0, track, a.horizontal() * a.vertical() + 10);
+	while (arr[i] != 0)
+	{
+		printf("%d\n", arr[i++]);
+	}
+	printf("%d\n", res);
 	return 0;
+}*/
+
+/*int Maze:: find_path(int* arr, int x1, int y1, int x2, int y2, int step, coord* track, int size)
+{
+	//printf("**");
+	assert(arr);
+	if ((horizontal_ * vertical_ - step + 5) / 5 <= abs(x1 - x2) + abs(y1 - y2))
+	{
+		*arr = S_END;
+		return DEAD_END;
+	}
+
+	if (x1 == x2 && y1 == y2)
+	{
+		*arr = S_END;
+		return SUCCESS;
+	}
+
+	if (cell_[x1][y1].north_ == NO_WALL && checkTrack(track, size, x1 - 1, y1))
+	{
+		*arr = S_UP;
+		track[step].x = x1;
+		track[step].y = y1; 
+		if(find_path(arr + 1, x1 - 1, y1, x2, y2, step + 1, track, size) == SUCCESS)
+		{
+			return SUCCESS;
+		}
+	}
+
+	if (cell_[x1][y1].east_ == NO_WALL && checkTrack(track, size, x1, y1 + 1))
+	{
+		*arr = S_RIGHT;
+		track[step].x = x1;
+		track[step].y = y1;
+		if(find_path(arr + 1, x1, y1 + 1, x2, y2, step + 1, track, size) == SUCCESS)
+		{
+			return SUCCESS;
+		}
+	}
+
+	if (cell_[x1][y1].south_ == NO_WALL   && checkTrack(track, size, x1 + 1, y1))
+	{
+		*arr = S_DOWN;
+		track[step].x = x1;
+		track[step].y = y1;
+		if(find_path(arr + 1, x1 + 1, y1, x2, y2, step + 1, track, size) == SUCCESS)
+		{
+			return SUCCESS;
+		}
+	}
+
+	if (cell_[x1][y1].west_ == NO_WALL && checkTrack(track, size, x1, y1 - 1))
+	{
+		*arr = S_LEFT;
+		track[step].x = x1;
+		track[step].y = y1;
+		if(find_path(arr + 1, x1, y1 - 1, x2, y2, step + 1, track, size) == SUCCESS)
+		{
+			return SUCCESS;
+		}
+	}
+
+	return DEAD_END;
 }*/

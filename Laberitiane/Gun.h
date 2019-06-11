@@ -37,13 +37,13 @@ public:
 			top_++;
 		}
 
-		for (auto bullet : store_)
+		/*for (auto bullet : store_)
 		{
 			if (bullet->active())
 			{
 				bullet->move(0, time);
 			}
-		}
+		}*/
 	}
 
 	void reload()
@@ -55,12 +55,7 @@ public:
 	}
 
 	~Gun()
-	{
-		for (auto x : store_)
-		{
-			delete x;
-		}
-	}
+	{}
 
 };
 

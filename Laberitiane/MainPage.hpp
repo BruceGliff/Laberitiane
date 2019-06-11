@@ -1,4 +1,6 @@
 #include "mainWindow.h"
+#define MULT 0x5F
+#define EXIT -1
 
 int startGame()
 {
@@ -22,6 +24,7 @@ int startGame()
 			if (event.type == sf::Event::Closed)
 			{
 				window->close();
+				delete window;
 				return -1;
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
@@ -32,7 +35,12 @@ int startGame()
 			heroNumber %= 8;
 			Window.setHero(int(heroNumber));
 
-
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+				{
+					window->close();
+					delete window;
+					return EXIT;
+				}
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
 				sf::Vector2i globalPosition = sf::Mouse::getPosition(*window);
@@ -41,9 +49,23 @@ int startGame()
 
 				if (Window.start->click(x, y))
 				{
+					window->close();
 					delete window;
-
 					return heroNumber;
+				}
+
+				
+				if (Window.exit->click(x, y))
+				{
+					window->close();
+					delete window;
+					return EXIT;
+				}
+				if (Window.video->click(x, y))
+				{
+					window->close();
+					delete window;
+					return MULT;
 				}
 			}
 
@@ -53,5 +75,6 @@ int startGame()
 		window->display();
 	}
 
+	delete window;
 	return 0;
 }

@@ -37,6 +37,8 @@ public:
 			map_.draw(spr_);
 		}
 	}
+	~Map()
+	{}
 
 	void draw(sf::RenderWindow * window) 
 	{
