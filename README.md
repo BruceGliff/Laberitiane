@@ -24,7 +24,7 @@ the Player spawns in a randomly generated maze with no way out. Since the game i
 ### Continued development of the project:
 The project will be rewritten in 3D **WITHOUT** using graphics libraries.
 **Purposes:**
-1. Make a graphics engine to rasterize 3D scenes. In working[Repository]. ((https://github.com/BruceGliff/Graphic))
+1. Make a graphics engine to rasterize 3D scenes. In working. ([Repository](https://github.com/BruceGliff/Graphic))
 2. Make a physics engine. 
 3. Transfer the project to 3D.
 
