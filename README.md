@@ -10,7 +10,7 @@ RU
 Продолжение развития проекта:
 Проект будет переписан в 3D **БЕЗ** использования графических библиотек.
 **Цели:**
-1. Сделать графический движок для растеризации 3D сцены. В разработке[Репозиторий](https://github.com/BruceGliff/Graphic)
+1. Сделать графический движок для растеризации 3D сцены. В разработке. ([Репозиторий](https://github.com/BruceGliff/Graphic))
 2. Сделать физический движок. 
 3. Перенести проект в 3D.
 
@@ -23,7 +23,7 @@ the Player spawns in a randomly generated maze with no way out. Since the game i
 Continued development of the project:
 The project will be rewritten in 3D **WITHOUT** using graphics libraries.
 **Purposes:**
-1. Make a graphics engine to rasterize 3D scenes. In working[Repository](https://github.com/BruceGliff/Graphic)
+1. Make a graphics engine to rasterize 3D scenes. In working[Repository]. ((https://github.com/BruceGliff/Graphic))
 2. Make a physics engine. 
 3. Transfer the project to 3D.
 
